@@ -1,0 +1,10 @@
+<h2><%= "Information about #{@name}:" %></h2>
+
+<h3><%= "Grade: #{@grade}" %></h3>
+
+<h3>Completed Questions:</h3>
+<ul>
+<% @questions.each do |question| %>
+  <li><%= question.prompt %></li>
+<% end %>
+</ul>
