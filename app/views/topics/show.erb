@@ -2,6 +2,7 @@
 
 <ul>
 <% @questions.each do |question| %>
-  <li><%= question.prompt %></li>
+  <li><a href=<%= "/questions/#{question.id}" %>><%= "#{question.prompt}" %></a></li>
 <% end %>
 </ul>
+

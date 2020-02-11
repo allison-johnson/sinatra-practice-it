@@ -1,11 +1,9 @@
 To do
-- Edit a question's topics
+- Edit page for students
 
 - Seed database!
 
 - Radio buttons for difficulty
-
-- Edit page for students
 
 - Delete pages for questions, students, and topics
     * If a question was only associated with Topic X and then Topic X gets deleted, what should happen to the question?
@@ -80,4 +78,4 @@ Complete
 
 - Add "not found" functionality to show pages for individual questions/students/topics with nonexistent id's
 
-- Edit page for question's prompt
+- Edit page for question's prompt and topics
