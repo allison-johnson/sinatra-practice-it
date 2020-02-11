@@ -6,8 +6,8 @@ class StudentsController < ApplicationController
 
   #Show page for a particular student
   get '/students/:id' do
-    if logged_in?
-      @student = Student.find_by(id: params[:id])
+    @student = Student.find_by(id: params[:id])
+    if logged_in? && current_user.username == @student.teacher.username 
       @name = "#{@student.first_name.upcase} #{@student.last_name.upcase}"
       @grade = @student.grade
       @questions = @student.questions
