@@ -22,6 +22,7 @@ class QuestionsController < ApplicationController
       @topics = @question.topics
       @difficulty = @question.difficulty
       @prompt = @question.prompt 
+      @owner = Teacher.find_by(id: @question.owner_id) #use this in show page
       erb :'questions/show'
     else
       redirect '/'
@@ -47,13 +48,13 @@ class QuestionsController < ApplicationController
       #flash[:message] = "Whoops - looks like you forgot to complete a field!"
       redirect '/questions/new'
     else #If nothing was blank, attempt to create a new Question...
-      question = Question.new(prompt: params[:prompt], difficulty: params[:difficulty])
+      question = Question.new(prompt: params[:prompt], difficulty: params[:difficulty], owner_id: session[:id])
       if question.save #All validations passed, so associate question with selected topics
         topics = params[:topics]
         topics.each do |topic|
           question.topics << Topic.find_by(name: topic)
         end #each
-        redirect '/'
+        redirect "/teachers/#{session[:id]}"
       else #Some validation failed, try again...
         #flash[:message] = "Error!" #How to recognize which field didn't validate correctly?
         redirect '/questions/new'
