@@ -5,13 +5,18 @@
 <h1><%= "Create a New Question Below" %></h1>
 
 <form action="/questions" method="POST">
-  <label for="topic">Difficulty: </label>
+  <h3><label for="topic">Difficulty: </label>
   <input type="text" id="difficulty" name="difficulty"/>
   <br><br>
 
   <label for="prompt">Prompt: </label>
-  <input type="text" id="prompt" name="prompt"/>
-  <br><br>
+  <input type="text" id="prompt" name="prompt"/></h3>
+  <br>
+
+  <h2>Select Question Topic(s)</h2>
+  <% @topics.each do |topic| %>
+    <h3><input type="checkbox" name="topics[]" id="<%= topic.name %>" value="<%= topic.name %>"><%= topic.name %></h3>
+  <% end %>
 
   <input type="submit" value="Create Question"/>
 </form>

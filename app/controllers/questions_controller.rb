@@ -20,6 +20,7 @@ class QuestionsController < ApplicationController
   #new action
   get '/questions/new' do
     if logged_in?
+      @topics = Topic.all 
       @teacher = Teacher.find_by(id: session[:id]) #This is not actually used, as the question gets created for EVERYONE
       erb :'questions/new'
     else
@@ -34,10 +35,13 @@ class QuestionsController < ApplicationController
       redirect '/questions/new'
     else #If nothing was blank, attempt to create a new Question...
       question = Question.new(prompt: params[:prompt], difficulty: params[:difficulty])
-      if question.save #All validations passed
-        #Associate question with all checked topic boxes
+      if question.save #All validations passed, so associate question with selected topics
+        topics = params[:topics]
+        topics.each do |topic|
+          question.topics << Topic.find_by(name: topic)
+        end #each
         redirect '/'
-      else #Some validation failed, back to signup...
+      else #Some validation failed, try again...
         #flash[:message] = "Error!" #How to recognize which field didn't validate correctly?
         redirect '/questions/new'
       end #if able to save
