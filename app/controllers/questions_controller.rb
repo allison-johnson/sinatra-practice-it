@@ -33,6 +33,7 @@ class QuestionsController < ApplicationController
   get '/questions/:id/edit' do
     @question = Question.find_by(id: params[:id])
     if logged_in? && @question.owner_id == session[:id]
+      @topics = Topic.all 
       erb :'questions/edit'
     else
       redirect '/'

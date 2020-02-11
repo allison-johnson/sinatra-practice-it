@@ -8,9 +8,13 @@
     <input type="text" name="prompt" id="prompt" value="<%= @question.prompt %>">
 
     <h3>Edit Topics</h3>
-    <% @question.topics.each do |topic| %>
-      <input type="checkbox" name="topics[]" id="<%= topic.name %>" value="<%= topic.name %>"><%= topic.name %><br>
-    <% end %>
+    <% @topics.each do |topic| %>
+      <% if @question.topics.include?(topic) %>
+        <input type="checkbox" name="topics[]" id="<%= topic.name %>" value="<%= topic.name %>" checked><%= topic.name %><br>
+      <% else %>
+        <input type="checkbox" name="topics[]" id="<%= topic.name %>" value="<%= topic.name %>"><%= topic.name %><br>
+      <% end #if %>
+    <% end #do %>
 
     <br><input type="submit" value="Save Edits">
   </form>
