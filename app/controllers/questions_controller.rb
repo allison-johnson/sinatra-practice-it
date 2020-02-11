@@ -80,6 +80,12 @@ class QuestionsController < ApplicationController
     else
       @question = Question.find_by(id: params[:id])
       @question.update(prompt: params[:prompt])
+
+      @question.topics.clear
+      params[:topics].each do |topic|
+        @question.topics << Topic.find_by(name: topic)
+      end #each
+
       redirect "/teachers/#{session[:id]}"
     end #if
   end #action
