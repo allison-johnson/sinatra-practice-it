@@ -1,6 +1,4 @@
 To do
-- Index pages for students showing all of the objects in the database with links to individual show pages?
-
 - Only able to see show & index pages if correct teacher is logged in
 
 - Where to redirect if correct teacher is not logged in???
@@ -50,3 +48,4 @@ Complete
 - show page for individual student (by id)
 - index page for questions links to individual show page for each question
 - index page for topics links to individual show page for each topic 
+- index page for students links to individual show page for each student

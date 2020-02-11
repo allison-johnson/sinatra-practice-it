@@ -31,7 +31,7 @@ class QuestionsController < ApplicationController
   #Show all of a teacher's questions (index page)
   get '/:username/questions' do
     #binding.pry 
-    if logged_in?
+    if logged_in? && current_user.username == params[:username]
       #@teacher = current_user
       @teacher = Teacher.find_by(username: params[:username]) #also need to make sure that teacher is currently logged in...
       @questions = Question.all
