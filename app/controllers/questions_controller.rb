@@ -4,6 +4,19 @@ class QuestionsController < ApplicationController
   enable :sessions
   use Rack::Flash 
 
+  #Show page for a particular question
+  get '/questions/:id' do
+    if logged_in?
+      @question = Question.find_by(id: params[:id])
+      @topics = @question.topics
+      @difficulty = @question.difficulty
+      @prompt = @question.prompt 
+      erb :'questions/show'
+    else
+      redirect '/'
+    end
+  end
+
   #new action
   get '/questions/new' do
     if logged_in?

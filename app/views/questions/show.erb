@@ -1,0 +1,14 @@
+<h2><%= "Information for Question ##{@question.id}" %></h2>
+
+<h3>Difficulty:</h3>
+<%= @difficulty %>
+
+<h3>Prompt:</h3>
+<%= @prompt %>
+
+<h3>Topics:</h3>
+<ul>
+<% @topics.each do |topic| %>
+  <li><%= topic.name %></li>
+<% end %>
+</ul>
