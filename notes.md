@@ -1,11 +1,13 @@
 To do
-- Only able to see show pages if correct teacher is logged in
-
-- Are questions/topics currently associated to a teacher? Should they be?
+- Only able to see question/topic show pages if correct teacher is logged in (although maybe all teachers can see these, as long as someone is logged in???)
+    * Are questions/topics currently associated to a teacher? Should they be?
+        * They are ... because the student_questions join table links every question to a student, who is in turn associated with a teacher
 
 - Where to redirect if correct teacher is not logged in???
 
-- Add "not found" functionality to show pages for individual questions/students/topics
+- Move index action to parent controller? What should index page look like? (Maybe a link to log in if user isn't logged in, otherwise link to teacher's show page)
+
+- Add "not found" functionality to show pages for individual questions/students/topics with nonexistent id's
 
 - Where to redirect once topic/question/student is successfully created? Back to teacher show page OR to the show page for that object...
 
@@ -50,9 +52,13 @@ Complete
 - show page for individual topic (by id)
 - show page for individual question (by id)
 - show page for individual student (by id)
+
 - index page for questions links to individual show page for each question
 - index page for topics links to individual show page for each topic 
 - index page for students links to individual show page for each student
+
 - questions index page only shows if correct teacher is logged in (username in URL matches current user's username)
 - students index page only shows if correct teacher is logged in (username in URL matches current user's username)
 - topics index page only shows if correct teacher is logged in (username in URL matches current user's username)
+
+- teacher can only view student show page if student belongs to them

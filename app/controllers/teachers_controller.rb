@@ -9,6 +9,16 @@ class TeachersController < ApplicationController
     erb :'index'
   end #action
 
+  #show action, loads show page for individual teacher
+  get '/teachers/:id' do
+    @teacher = Teacher.find_by(id: params[:id])
+    if logged_in? && @teacher.username == current_user.username
+      erb :'teachers/show'
+    else
+      redirect '/'
+    end #if
+  end #action 
+
   #new action
   get '/signup' do
     if logged_in?

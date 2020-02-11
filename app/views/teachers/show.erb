@@ -1,0 +1,12 @@
+<h1><%= "Welcome, #{@teacher.username.upcase}!" %></h1>
+
+<h2>Navigate by Student:</h2>
+<ul>
+<% @teacher.students.each do |student| %>
+  <li><%= "#{student.first_name} #{student.last_name}" %></li>
+<% end %>
+</ul>
+
+<h2>Navigate by Question:</h2> 
+Right now a teacher doesn't have questions associated to them...
+
