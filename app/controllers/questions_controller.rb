@@ -27,7 +27,17 @@ class QuestionsController < ApplicationController
     else
       redirect '/'
     end
-  end
+  end #action 
+
+  #Edit action
+  get '/questions/:id/edit' do
+    @question = Question.find_by(id: params[:id])
+    if logged_in? && @question.owner_id == session[:id]
+      erb :'questions/edit'
+    else
+      redirect '/'
+    end #if
+  end #action
 
   #Show all of a teacher's questions (index page)
   get '/:username/questions' do
@@ -59,6 +69,17 @@ class QuestionsController < ApplicationController
         #flash[:message] = "Error!" #How to recognize which field didn't validate correctly?
         redirect '/questions/new'
       end #if able to save
+    end #if
+  end #action
+
+  #update action
+  patch '/questions/:id' do
+    if params[:prompt] == ""
+      redirect "/questions/#{params[:id]}/edit"
+    else
+      @question = Question.find_by(id: params[:id])
+      @question.update(prompt: params[:prompt])
+      redirect "/teachers/#{session[:id]}"
     end #if
   end #action
 

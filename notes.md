@@ -1,18 +1,12 @@
 To do
-- Teacher show page
-    * Shows all questions
-    * Shows owned questions ('your questions')
-
 - Seed database!
+
+- Radio buttons for difficulty
 
 - Edit pages for questions and students
 
 - Delete pages for questions, students, and topics
     * If a question was only associated with Topic X and then Topic X gets deleted, what should happen to the question?
-
-- Only able to see question/topic show pages if correct teacher is logged in (although maybe all teachers can see these, as long as someone is logged in???)
-    * Are questions/topics currently associated to a teacher? Should they be?
-        * They are ... because the student_questions join table links every question to a student, who is in turn associated with a teacher
 
 - Where to redirect if correct teacher is not logged in???
 
@@ -77,5 +71,7 @@ Complete
     * Button to create a topic
     * Button to create a question
     * Button to log out
+    * Shows all questions
+    * Shows owned questions ('your questions')
 
 - Add "not found" functionality to show pages for individual questions/students/topics with nonexistent id's

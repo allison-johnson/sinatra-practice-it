@@ -1,0 +1,10 @@
+<% if logged_in? && @question.owner_id == session[:id] %>
+  <h2>Update Question</h2>
+
+  <form action=<%= "/questions/#{@question.id}" %> method="POST">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <label for="prompt">Edit the Question's Prompt: </label><br>
+    <input type="text" name="prompt" id="prompt" value="<%= @question.prompt %>">
+    <input type="submit" value="Edit Question">
+  </form>
+<% end %>
