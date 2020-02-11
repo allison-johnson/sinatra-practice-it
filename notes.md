@@ -1,6 +1,8 @@
 To do
 - Only able to see show & index pages if correct teacher is logged in
 
+- Are questions currently associated to a teacher? Should they be?
+
 - Where to redirect if correct teacher is not logged in???
 
 - Where to redirect once topic/question/student is successfully created? Back to teacher show page OR to the show page for that object...
@@ -49,3 +51,4 @@ Complete
 - index page for questions links to individual show page for each question
 - index page for topics links to individual show page for each topic 
 - index page for students links to individual show page for each student
+- questions index page only shows if correct teacher is logged in (username in URL matches current user's username)

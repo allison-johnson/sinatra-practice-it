@@ -30,7 +30,7 @@ class StudentsController < ApplicationController
   #Show a all of a teacher's students (index action)
   get '/:username/students' do
     #binding.pry 
-    if logged_in?
+    if logged_in? && current_user.username == params[:username]
       #@teacher = current_user
       @teacher = Teacher.find_by(username: params[:username]) #also need to make sure that teacher is currently logged in...
       @students = @teacher.students #could also use Student.all for this, which is a problem...
