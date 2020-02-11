@@ -1,3 +1,4 @@
 <% @questions.each do |question| %>
-  <a href=https://www.nytimes.com><%= question.prompt %></a><br>
+  <a href=<%= "/questions/#{question.id}" %>><%= question.prompt %></a><br>
 <% end %>
+
