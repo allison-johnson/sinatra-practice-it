@@ -7,8 +7,6 @@ To do
 
 - Move index action to parent controller? What should index page look like? (Maybe a link to log in if user isn't logged in, otherwise link to teacher's show page)
 
-- Add "not found" functionality to show pages for individual questions/students/topics with nonexistent id's
-
 - Where to redirect once topic/question/student is successfully created? Back to teacher show page OR to the show page for that object...
 
 - Teacher show page with 
@@ -17,6 +15,8 @@ To do
 - Update action: teacher
 - Update action: student
 - Update action: question
+
+- Add "Back to Teacher Homepage" button to all pages
 
 Teacher can:
 - log in
@@ -66,3 +66,5 @@ Complete
     * Button to create a student
     * Button to create a topic
     * Button to create a question
+
+- Add "not found" functionality to show pages for individual questions/students/topics with nonexistent id's

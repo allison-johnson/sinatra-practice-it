@@ -58,7 +58,8 @@ class TeachersController < ApplicationController
 
     if @teacher != nil && @teacher.authenticate(params[:password])
       session[:id] = @teacher.id 
-      redirect to "/#{@teacher.username}/students"
+      redirect to "/teachers/#{@teacher.id}"
+      #redirect to "/#{@teacher.username}/students"
     else
       redirect to '/login'
     end #if
