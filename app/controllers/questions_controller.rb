@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
     if logged_in?
       #@teacher = current_user
       @teacher = Teacher.find_by(username: params[:username]) #also need to make sure that teacher is currently logged in...
-      @questions = @teacher.questions
+      @questions = Question.all
       erb :'questions/index'
     else
       redirect '/'
@@ -20,7 +20,7 @@ class QuestionsController < ApplicationController
   #new action
   get '/questions/new' do
     if logged_in?
-      @teacher = Teacher.find_by(id: session[:id])
+      @teacher = Teacher.find_by(id: session[:id]) #This is not actually used, as the question gets created for EVERYONE
       erb :'questions/new'
     else
       redirect '/login'

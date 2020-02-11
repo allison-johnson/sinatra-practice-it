@@ -9,6 +9,8 @@ Teacher can:
 - edit their own information 
 - edit a student, a question, or a topic (from that student, question, or topic's show page)
 
+- right now, all teachers can access all questions ... is that what I want?
+
 Additional Features
 - add checkboxes to Create Question form so teachers can select from existing topics (and then have a button to create a new topic as well?)
 - a layout page! make it pretty...

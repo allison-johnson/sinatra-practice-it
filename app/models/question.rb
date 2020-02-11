@@ -4,4 +4,7 @@ class Question < ActiveRecord::Base
     has_many :teachers, through: :students 
     has_many :question_topics
     has_many :topics, through: :question_topics
+
+    validates_presence_of :difficulty, :prompt
+    validates_uniqueness_of :prompt 
 end #class
