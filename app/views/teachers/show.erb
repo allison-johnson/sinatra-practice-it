@@ -8,5 +8,10 @@
 </ul>
 
 <h2>Navigate by Question:</h2> 
-Right now a teacher doesn't have questions associated to them...
+<ul>
+<% @teacher.questions.each do |question| %>
+  <li><%= "#{question.prompt}" %></li>
+<% end %>
+</ul>
+
 
