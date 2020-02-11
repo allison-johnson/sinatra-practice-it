@@ -1,14 +1,18 @@
 To do
+- Edit a question's topics
+
 - Seed database!
 
 - Radio buttons for difficulty
 
-- Edit pages for questions and students
+- Edit page for students
 
 - Delete pages for questions, students, and topics
     * If a question was only associated with Topic X and then Topic X gets deleted, what should happen to the question?
 
 - Where to redirect if correct teacher is not logged in???
+
+- Where to redirect to if a teacher tries to edit a question they don't own? (Generic failure page?)
 
 - Move index action to parent controller? What should index page look like? (Maybe a link to log in if user isn't logged in, otherwise link to teacher's show page)
 
@@ -75,3 +79,5 @@ Complete
     * Shows owned questions ('your questions')
 
 - Add "not found" functionality to show pages for individual questions/students/topics with nonexistent id's
+
+- Edit page for question's prompt

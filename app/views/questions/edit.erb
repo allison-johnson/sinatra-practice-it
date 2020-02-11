@@ -1,10 +1,17 @@
 <% if logged_in? && @question.owner_id == session[:id] %>
-  <h2>Update Question</h2>
+  <h2><%= "Edit Question ##{@question.id}" %></h2>
 
   <form action=<%= "/questions/#{@question.id}" %> method="POST">
     <input id="hidden" type="hidden" name="_method" value="patch">
-    <label for="prompt">Edit the Question's Prompt: </label><br>
+
+    <h3><label for="prompt">Edit the Prompt: </label></h3>
     <input type="text" name="prompt" id="prompt" value="<%= @question.prompt %>">
-    <input type="submit" value="Edit Question">
+
+    <h3>Edit Topics</h3>
+    <% @question.topics.each do |topic| %>
+      <input type="checkbox" name="topics[]" id="<%= topic.name %>" value="<%= topic.name %>"><%= topic.name %><br>
+    <% end %>
+
+    <br><input type="submit" value="Save Edits">
   </form>
 <% end %>
