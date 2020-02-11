@@ -52,3 +52,4 @@ Complete
 - index page for topics links to individual show page for each topic 
 - index page for students links to individual show page for each student
 - questions index page only shows if correct teacher is logged in (username in URL matches current user's username)
+- students index page only shows if correct teacher is logged in (username in URL matches current user's username)
