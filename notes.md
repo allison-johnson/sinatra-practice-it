@@ -1,5 +1,5 @@
 To do
-- Index pages for students/topics showing all of the objects in the database with links to individual show pages?
+- Index pages for students showing all of the objects in the database with links to individual show pages?
 
 - Only able to see show & index pages if correct teacher is logged in
 
@@ -49,3 +49,4 @@ Complete
 - show page for individual question (by id)
 - show page for individual student (by id)
 - index page for questions links to individual show page for each question
+- index page for topics links to individual show page for each topic 

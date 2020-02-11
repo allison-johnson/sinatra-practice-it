@@ -33,7 +33,7 @@ class StudentsController < ApplicationController
     if logged_in?
       #@teacher = current_user
       @teacher = Teacher.find_by(username: params[:username]) #also need to make sure that teacher is currently logged in...
-      @students = @teacher.students
+      @students = @teacher.students #could also use Student.all for this, which is a problem...
       erb :'students/index'
     else
       redirect '/'
