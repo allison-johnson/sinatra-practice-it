@@ -9,9 +9,6 @@ To do
 
 - Where to redirect once topic/question/student is successfully created? Back to teacher show page OR to the show page for that object...
 
-- Teacher show page with 
-    * Button to log out
-
 - Update action: teacher
 - Update action: student
 - Update action: question
@@ -66,5 +63,6 @@ Complete
     * Button to create a student
     * Button to create a topic
     * Button to create a question
+    * Button to log out
 
 - Add "not found" functionality to show pages for individual questions/students/topics with nonexistent id's

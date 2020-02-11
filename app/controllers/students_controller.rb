@@ -54,7 +54,7 @@ class StudentsController < ApplicationController
         @teacher = Teacher.find_by(id: session[:id])
         @teacher.students << student 
         @teacher.save 
-        redirect '/'
+        redirect "/teachers/#{@teacher.id}"
       else #Some validation failed, back to signup...
         #flash[:message] = "Error!" #How to recognize which field didn't validate correctly?
         redirect '/students/new'
