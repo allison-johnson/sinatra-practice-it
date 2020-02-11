@@ -4,6 +4,16 @@ class TopicsController < ApplicationController
   enable :sessions
   use Rack::Flash 
 
+  #new action
+  get '/topics/new' do
+    if logged_in?
+      @teacher = Teacher.find_by(id: session[:id]) #This is not actually used, as the question gets created for EVERYONE
+      erb :'topics/new'
+    else
+      redirect '/login'
+    end #if
+  end #action
+
   #Show page for a particular topic
   get '/topics/:id' do
     if logged_in?
@@ -14,16 +24,6 @@ class TopicsController < ApplicationController
       redirect '/'
     end
   end
-
-  #new action
-  get '/topics/new' do
-    if logged_in?
-      @teacher = Teacher.find_by(id: session[:id]) #This is not actually used, as the question gets created for EVERYONE
-      erb :'topics/new'
-    else
-      redirect '/login'
-    end #if
-  end #action
 
   #Show all of a teacher's topics (index action)
   get '/:username/topics' do
