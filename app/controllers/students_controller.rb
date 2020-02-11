@@ -4,19 +4,6 @@ class StudentsController < ApplicationController
   enable :sessions
   use Rack::Flash 
 
-  #Show page for a particular student
-  get '/students/:id' do
-    @student = Student.find_by(id: params[:id])
-    if logged_in? && current_user.username == @student.teacher.username 
-      @name = "#{@student.first_name.upcase} #{@student.last_name.upcase}"
-      @grade = @student.grade
-      @questions = @student.questions
-      erb :'students/show'
-    else
-      redirect '/'
-    end
-  end
-
   #new action
   get '/students/new' do
     if logged_in?
@@ -26,6 +13,19 @@ class StudentsController < ApplicationController
       redirect '/login'
     end #if
   end #action
+
+  #Show page for a particular student
+  get '/students/:id' do
+    @student = Student.find_by(id: params[:id])
+    if @student && logged_in? && current_user.username == @student.teacher.username 
+      @name = "#{@student.first_name.upcase} #{@student.last_name.upcase}"
+      @grade = @student.grade
+      @questions = @student.questions
+      erb :'students/show'
+    else
+      redirect '/'
+    end
+  end
 
   #Show a all of a teacher's students (index action)
   get '/:username/students' do
