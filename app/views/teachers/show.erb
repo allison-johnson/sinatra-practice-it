@@ -3,21 +3,21 @@
 <h2>Navigate by Student:</h2>
 <ul>
 <% @teacher.students.each do |student| %>
-  <li><%= "#{student.first_name} #{student.last_name}" %></li>
+  <li><a href=<%= "/students/#{student.id}" %>><%= "#{student.first_name} #{student.last_name}" %></a></li>
 <% end %>
 </ul>
 
 <h2>Navigate by Topic:</h2> 
 <ul>
 <% @teacher.topics.each do |topic| %>
-  <li><%= "#{topic.name}" %></li>
+  <li><a href=<%= "/topics/#{topic.id}" %>><%= "#{topic.name}" %></a></li>
 <% end %>
 </ul>
 
 <h2>Navigate by Question:</h2> 
 <ul>
 <% @teacher.questions.each do |question| %>
-  <li><%= "#{question.prompt}" %></li>
+  <li><a href=<%= "/questions/#{question.id}" %>><%= "#{question.prompt}" %></a></li>
 <% end %>
 </ul>
 

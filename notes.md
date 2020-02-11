@@ -15,6 +15,7 @@ To do
     * Teacher's name
     * Links to all students' show pages --> list all questions student has completed
     * Links to all questions' show pages --> list topic(s) and students who have completed questions
+    * Links t all topics show pages
     * Button to create a student
     * Button to create a topic
     * Button to create a question
@@ -62,3 +63,5 @@ Complete
 - topics index page only shows if correct teacher is logged in (username in URL matches current user's username)
 
 - teacher can only view student show page if student belongs to them
+
+- teacher show page has list of that teacher's students, topics, and questions
