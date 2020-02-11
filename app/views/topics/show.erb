@@ -1,0 +1,5 @@
+<h2><%= "Questions About: #{@topic.name}" %></h2>
+
+<% @questions.each do |question| %>
+  <%= question.prompt %>
+<% end %>

@@ -1,9 +1,10 @@
 To do
-- Create new topic
-
 - Do I have show pages for questions/topics/students, each showing reasonable information about that object???
+    * Only able to see it if correct teacher is logged in
 
 - Where to redirect if correct teacher is not logged in???
+
+- Where to redirect once topic/question/student is successfully created? Back to teacher show page OR to the show page for that object...
 
 - Teacher show page with 
     * Teacher's name
@@ -30,6 +31,7 @@ Teacher can:
 - right now, all teachers can access all questions ... is that what I want?
 
 Additional Features
+- import CSV files with topics and questions ("Question #1", etc.) and use to seed databases
 - on question creation, allow teacher to create a new topic as well
 - a layout page! make it pretty...
 - when teacher logs in they can select whether to view all students or view all questions
@@ -41,3 +43,4 @@ Additional Features
 
 Complete
 - add checkboxes to Create Question form so teachers can select from existing topics
+- create new topic

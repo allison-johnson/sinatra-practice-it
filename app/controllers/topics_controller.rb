@@ -4,6 +4,17 @@ class TopicsController < ApplicationController
   enable :sessions
   use Rack::Flash 
 
+  #Show page for a particular topic
+  get '/topics/:id' do
+    if logged_in?
+      @topic = Topic.find_by(id: params[:id])
+      @questions = Question.all.select{|question| question.topics.include?(@topic)}
+      erb :'topics/show'
+    else
+      redirect '/'
+    end
+  end
+
   #Show all of a teacher's topics
   get '/:username/topics' do
     if logged_in?
