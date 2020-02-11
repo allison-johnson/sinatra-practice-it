@@ -1,3 +1,3 @@
 <% @topics.each do |topic| %>
-  <%= topic.name %><br>
+  <a href=<%= "/topics/#{topic.id}" %>><%= topic.name %></a><br>
 <% end %>
