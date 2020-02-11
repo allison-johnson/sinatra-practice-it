@@ -15,18 +15,6 @@ class TopicsController < ApplicationController
     end
   end
 
-  #Show all of a teacher's topics
-  get '/:username/topics' do
-    if logged_in?
-      #@teacher = current_user
-      @teacher = Teacher.find_by(username: params[:username]) #also need to make sure that teacher is currently logged in...
-      @topics = Topic.all
-      erb :'topics/index'
-    else
-      redirect '/'
-    end #if
-  end #action
-
   #new action
   get '/topics/new' do
     if logged_in?
@@ -34,6 +22,18 @@ class TopicsController < ApplicationController
       erb :'topics/new'
     else
       redirect '/login'
+    end #if
+  end #action
+
+  #Show all of a teacher's topics (index action)
+  get '/topics/:username' do
+    if logged_in?
+      #@teacher = current_user
+      @teacher = Teacher.find_by(username: params[:username]) #also need to make sure that teacher is currently logged in...
+      @topics = Topic.all
+      erb :'topics/index'
+    else
+      redirect '/'
     end #if
   end #action
 

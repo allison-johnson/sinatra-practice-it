@@ -4,19 +4,6 @@ class QuestionsController < ApplicationController
   enable :sessions
   use Rack::Flash 
 
-  #Show all of a teacher's questions
-  get '/:username/questions' do
-    #binding.pry 
-    if logged_in?
-      #@teacher = current_user
-      @teacher = Teacher.find_by(username: params[:username]) #also need to make sure that teacher is currently logged in...
-      @questions = Question.all
-      erb :'questions/index'
-    else
-      redirect '/'
-    end #if
-  end #action
-
   #new action
   get '/questions/new' do
     if logged_in?
@@ -25,6 +12,19 @@ class QuestionsController < ApplicationController
       erb :'questions/new'
     else
       redirect '/login'
+    end #if
+  end #action
+
+  #Show all of a teacher's questions (index page)
+  get '/questions/:username' do
+    #binding.pry 
+    if logged_in?
+      #@teacher = current_user
+      @teacher = Teacher.find_by(username: params[:username]) #also need to make sure that teacher is currently logged in...
+      @questions = Question.all
+      erb :'questions/index'
+    else
+      redirect '/'
     end #if
   end #action
 

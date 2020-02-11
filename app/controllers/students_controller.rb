@@ -4,8 +4,18 @@ class StudentsController < ApplicationController
   enable :sessions
   use Rack::Flash 
 
-  #Show a all of a teacher's students
-  get '/:username/students' do
+  #new action
+  get '/students/new' do
+    if logged_in?
+      @teacher = Teacher.find_by(id: session[:id])
+      erb :'students/new'
+    else
+      redirect '/login'
+    end #if
+  end #action
+
+  #Show a all of a teacher's students (index action)
+  get '/students/:username' do
     #binding.pry 
     if logged_in?
       #@teacher = current_user
@@ -14,16 +24,6 @@ class StudentsController < ApplicationController
       erb :'students/index'
     else
       redirect '/'
-    end #if
-  end #action
-
-  #new action
-  get '/students/new' do
-    if logged_in?
-      @teacher = Teacher.find_by(id: session[:id])
-      erb :'students/new'
-    else
-      redirect '/login'
     end #if
   end #action
 
