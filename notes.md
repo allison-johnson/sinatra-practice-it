@@ -12,14 +12,8 @@ To do
 - Where to redirect once topic/question/student is successfully created? Back to teacher show page OR to the show page for that object...
 
 - Teacher show page with 
-    * Teacher's name
-    * Links to all students' show pages --> list all questions student has completed
-    * Links to all questions' show pages --> list topic(s) and students who have completed questions
-    * Links t all topics show pages
-    * Button to create a student
-    * Button to create a topic
-    * Button to create a question
     * Button to log out
+
 - Update action: teacher
 - Update action: student
 - Update action: question
@@ -64,4 +58,11 @@ Complete
 
 - teacher can only view student show page if student belongs to them
 
-- teacher show page has list of that teacher's students, topics, and questions
+- Teacher show page with 
+    * Teacher's name
+    * Links to all students' show pages --> list all questions student has completed
+    * Links to all questions' show pages --> list topic(s) and students who have completed questions
+    * Links t all topics show pages
+    * Button to create a student
+    * Button to create a topic
+    * Button to create a question

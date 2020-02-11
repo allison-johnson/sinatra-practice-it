@@ -8,7 +8,12 @@ class ApplicationController < Sinatra::Base
     enable :sessions unless test?
     set :session_secret, "secret"
   end
-    
+  
+  get '/failure' do
+    @teacher = Teacher.find_by(id: session[:id])
+    erb :'failure'
+  end
+
   helpers do
     def logged_in?
         !!current_user
