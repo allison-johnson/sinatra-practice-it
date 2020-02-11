@@ -12,6 +12,8 @@ class TeachersController < ApplicationController
   #show action, loads show page for individual teacher
   get '/teachers/:id' do
     @teacher = Teacher.find_by(id: params[:id])
+    @others_questions = Question.all.select{|question| question.owner_id != params[:id].to_i}
+    @owned_questions = Question.all.select{|question| question.owner_id == params[:id].to_i}
     if logged_in? && @teacher.username == current_user.username
       erb :'teachers/show'
     else

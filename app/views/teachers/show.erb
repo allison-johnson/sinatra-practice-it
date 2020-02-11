@@ -14,9 +14,16 @@
 <% end %>
 </ul>
 
-<h2>Navigate by Question:</h2> 
+<h2>Questions Created by You:</h2> 
 <ul>
-<% @teacher.questions.each do |question| %>
+<% @owned_questions.each do |question| %>
+  <li><a href=<%= "/questions/#{question.id}" %>><%= "#{question.prompt}" %></a></li>
+<% end %>
+</ul>
+
+<h2>Other Questions:</h2> 
+<ul>
+<% @others_questions.each do |question| %>
   <li><a href=<%= "/questions/#{question.id}" %>><%= "#{question.prompt}" %></a></li>
 <% end %>
 </ul>
