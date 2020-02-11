@@ -1,3 +1,22 @@
+To do
+- Create new topic
+
+- Do I have show pages for questions/topics/students, each showing reasonable information about that object???
+
+- Where to redirect if correct teacher is not logged in???
+
+- Teacher show page with 
+    * Teacher's name
+    * Links to all students' show pages --> list all questions student has completed
+    * Links to all questions' show pages --> list topic(s) and students who have completed questions
+    * Button to create a student
+    * Button to create a topic
+    * Button to create a question
+    * Button to log out
+- Update action: teacher
+- Update action: student
+- Update action: question
+
 Teacher can:
 - log in
 - log out
@@ -8,11 +27,10 @@ Teacher can:
 - create a new topic
 - edit their own information 
 - edit a student, a question, or a topic (from that student, question, or topic's show page)
-
 - right now, all teachers can access all questions ... is that what I want?
 
 Additional Features
-- add checkboxes to Create Question form so teachers can select from existing topics (and then have a button to create a new topic as well?)
+- on question creation, allow teacher to create a new topic as well
 - a layout page! make it pretty...
 - when teacher logs in they can select whether to view all students or view all questions
 - when creating new teacher, if validation error --> recognize which field didn't validate correctly (and auto-populate others, perhaps?)
@@ -20,3 +38,6 @@ Additional Features
 - auto suggest usernmame (first_initial-dot-last_name-number)
 - for students, validate uniqueness of first/last name combination
 - teachers should really be able to share questions ... maybe questions get stored in some sort of global question bank?
+
+Complete
+- add checkboxes to Create Question form so teachers can select from existing topics

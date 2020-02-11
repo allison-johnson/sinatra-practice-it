@@ -5,3 +5,4 @@ run ApplicationController
 use TeachersController
 use StudentsController
 use QuestionsController
+use TopicsController 
