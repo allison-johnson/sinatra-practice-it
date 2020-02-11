@@ -1,6 +1,4 @@
 To do
-- Do I have show pages for students, each showing reasonable information about that object???
-
 - Index pages for students/questions/topics showing all of the objects in the database with links to individual show pages?
 
 - Only able to see show & index pages if correct teacher is logged in
@@ -47,5 +45,6 @@ Additional Features
 Complete
 - add checkboxes to Create Question form so teachers can select from existing topics
 - create new topic
-- show page for individual topic
-- show page for individual question
+- show page for individual topic (by id)
+- show page for individual question (by id)
+- show page for individual student (by id)

@@ -28,7 +28,7 @@ class StudentsController < ApplicationController
   end #action
 
   #Show a all of a teacher's students (index action)
-  get '/students/:username' do
+  get '/:username/students' do
     #binding.pry 
     if logged_in?
       #@teacher = current_user

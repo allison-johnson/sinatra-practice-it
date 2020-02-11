@@ -26,7 +26,7 @@ class TopicsController < ApplicationController
   end #action
 
   #Show all of a teacher's topics (index action)
-  get '/topics/:username' do
+  get '/:username/topics' do
     if logged_in?
       #@teacher = current_user
       @teacher = Teacher.find_by(username: params[:username]) #also need to make sure that teacher is currently logged in...

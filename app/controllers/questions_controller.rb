@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
   end #action
 
   #Show all of a teacher's questions (index page)
-  get '/questions/:username' do
+  get '/:username/questions' do
     #binding.pry 
     if logged_in?
       #@teacher = current_user
