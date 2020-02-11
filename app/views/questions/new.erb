@@ -1,0 +1,17 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<h1><%= "Create a New Questio Below" %></h1>
+
+<form action="/questions" method="POST">
+  <label for="topic">Difficulty: </label>
+  <input type="text" id="difficulty" name="difficulty"/>
+  <br><br>
+
+  <label for="prompt">Prompt: </label>
+  <input type="text" id="prompt" name="prompt"/>
+  <br><br>
+
+  <input type="submit" value="Create Question"/>
+</form>

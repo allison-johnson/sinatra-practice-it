@@ -1,48 +1,45 @@
 require 'rack-flash'
 
-class StudentsController < ApplicationController
+class QuestionsController < ApplicationController
   enable :sessions
   use Rack::Flash 
 
-  #Show a all of a teacher's students
-  get '/:username/students' do
+  #Show a all of a teacher's questions
+  get '/:username/questions' do
     #binding.pry 
     if logged_in?
       #@teacher = current_user
       @teacher = Teacher.find_by(username: params[:username]) #also need to make sure that teacher is currently logged in...
-      @students = @teacher.students
-      erb :'students/index'
+      @questions = @teacher.questions
+      erb :'questions/index'
     else
       redirect '/'
     end #if
   end #action
 
   #new action
-  get '/students/new' do
+  get '/questions/new' do
     if logged_in?
       @teacher = Teacher.find_by(id: session[:id])
-      erb :'students/new'
+      erb :'questions/new'
     else
       redirect '/login'
     end #if
   end #action
 
   #create action
-  post '/students' do
-    if params[:first_name] == "" || params[:last_name] == "" || params[:grade] == "" 
+  post '/questions' do
+    if params[:prompt] == "" || params[:difficulty] == "" 
       #flash[:message] = "Whoops - looks like you forgot to complete a field!"
-      binding.pry 
-      redirect '/students/new'
-    else #If nothing was blank, attempt to create a new Student...
-      student = Student.new(first_name: params[:first_name], last_name: params[:last_name], grade: params[:grade].to_i)
-      if student.save #All validations passed
-        @teacher = Teacher.find_by(id: session[:id])
-        @teacher.students << student 
-        @teacher.save 
+      redirect '/questions/new'
+    else #If nothing was blank, attempt to create a new Question...
+      question = Question.new(prompt: params[:prompt], difficulty: params[:difficulty])
+      if question.save #All validations passed
+        #Associate question with all checked topic boxes
         redirect '/'
       else #Some validation failed, back to signup...
         #flash[:message] = "Error!" #How to recognize which field didn't validate correctly?
-        redirect '/students/new'
+        redirect '/questions/new'
       end #if able to save
     end #if
   end #action

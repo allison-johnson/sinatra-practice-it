@@ -1,0 +1,21 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<h1><%= "Create a New Student for #{@teacher.first_name.upcase} #{@teacher.last_name.upcase} Below" %></h1>
+
+<form action="/students" method="POST">
+  <label for="first_name">First Name: </label>
+  <input type="text" id="first_name" name="first_name"/>
+  <br><br>
+
+  <label for="last_name">Last Name: </label>
+  <input type="text" id="last_name" name="last_name"/>
+  <br><br>
+
+  <label for="grade">Grade: </label>
+  <input type="text" id="grade" name="grade"/>
+  <br><br>
+
+  <input type="submit" value="Create Student"/>
+</form>

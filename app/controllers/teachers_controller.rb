@@ -36,7 +36,8 @@ class TeachersController < ApplicationController
 
   get '/login' do
     if logged_in?
-      redirect '/'
+      @teacher = current_user
+      redirect to "/#{@teacher.username}/students"
     else
       erb :'teachers/login'
     end
@@ -44,11 +45,12 @@ class TeachersController < ApplicationController
 
   post '/login' do
     @teacher = Teacher.find_by(username: params[:username])
-    binding.pry
+
     if @teacher != nil && @teacher.authenticate(params[:password])
-      binding.pry 
       session[:id] = @teacher.id 
       redirect to "/#{@teacher.username}/students"
+    else
+      redirect to '/login'
     end #if
   end #login
 
