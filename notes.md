@@ -1,7 +1,5 @@
 To do
-- If question has no topics yet, indicate that on question show page
-
-- Add teacher_name attribute "Ms. Johnson" and use that for display purposes
+- When user navigates to /teachers/:id, they should see login page if they are not logged in OR they are logged in, but not as that teacher
 
 - Delete action for topics?
     * If a question was only associated with Topic X and then Topic X gets deleted, what should happen to the question?
@@ -16,7 +14,7 @@ To do
 
 - Seed database!
 
-- Radio buttons for difficulty
+- Radio buttons for difficulty?
 
 - Where to redirect if correct teacher is not logged in???
 
@@ -88,3 +86,5 @@ Complete
 - Able to edit student by clicking link on their show page
 - Able to delete question by clicking button on its show page
 - Able to edit question by clicking link on show page
+
+- If question has no topics yet, indicate that on question show page
