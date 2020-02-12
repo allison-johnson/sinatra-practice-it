@@ -15,6 +15,7 @@ class TeachersController < ApplicationController
     @others_questions = Question.all.select{|question| question.owner_id != params[:id].to_i}
     @owned_questions = Question.all.select{|question| question.owner_id == params[:id].to_i}
     if logged_in? && @teacher.username == current_user.username
+      @topics = Topic.all
       erb :'teachers/show'
     elsif logged_in? && @teacher.username != current_user.username
       @current_teacher = Teacher.find_by(id: session[:id])

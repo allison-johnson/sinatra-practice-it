@@ -1,10 +1,10 @@
 <h2><%= "Information for Question ##{@question.id}" %></h2>
 
 <h3>Question Owner:</h3>
-<%= @owner.username %>
+<%= "#{@owner.first_name.capitalize} #{@owner.last_name.capitalize}" %>
 
 <h3>Difficulty:</h3>
-<%= @difficulty %>
+<%= @difficulty.capitalize %>
 
 <h3>Prompt:</h3>
 <%= @prompt %>

@@ -9,7 +9,7 @@
 
 <h2>Navigate by Topic:</h2> 
 <ul>
-<% @teacher.topics.each do |topic| %>
+<% @topics.each do |topic| %>
   <li><a href=<%= "/topics/#{topic.id}" %>><%= "#{topic.name}" %></a></li>
 <% end %>
 </ul>
