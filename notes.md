@@ -14,8 +14,6 @@ To do
 
 - Move index action to parent controller? What should index page look like? (Maybe a link to log in if user isn't logged in, otherwise link to teacher's show page)
 
-- Where to redirect once topic/question/student is successfully created? Back to teacher show page!
-
 Additional Features
 - alphabetize topic list on teacher show page and topic index page
 - on student creation/update validate that grade is a number 9-12
