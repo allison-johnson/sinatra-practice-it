@@ -19,12 +19,15 @@
   <% end %>
   </ul>
 <% end #if %>
-<br><br>
-<a href=<%= "/questions/#{@question.id}/edit" %> class="btn">Edit Question</a>
-<br><br>
 
-<form action="/questions/<%=@question.id%>" method="POST">
-  <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete Question">
-</form>
+<% if @question.owner_id == current_user.id %>
+  <br><br>
+  <a href=<%= "/questions/#{@question.id}/edit" %> class="btn">Edit Question</a>
+  <br><br>
+
+  <form action="/questions/<%=@question.id%>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Question">
+  </form>
+<% end %>
 

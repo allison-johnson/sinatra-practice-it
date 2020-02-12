@@ -89,3 +89,8 @@ questions.each do |question|
 end #do
 
 #Give questions owner-id's
+teachers = [allison, syrena, andy, kyle, ted]
+questions.each do |question|
+  question.owner_id = teachers.sample.id
+  question.save 
+end #do
