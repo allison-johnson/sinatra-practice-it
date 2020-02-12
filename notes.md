@@ -1,5 +1,5 @@
 To do
-
+- If question has no topics yet, indicate that on question show page
 
 - Add teacher_name attribute "Ms. Johnson" and use that for display purposes
 
@@ -27,8 +27,6 @@ To do
 - Where to redirect once topic/question/student is successfully created? Back to teacher show page OR to the show page for that object...
 
 - Add "Back to Teacher Homepage" button to all pages
-
-- On question show page, if owner of question is logged in there should be an 'edit' button
 
 Teacher can:
 - log in
@@ -87,5 +85,6 @@ Complete
 - Edit page for question's prompt and topics
 
 - Able to delete student by clicking button on their show page
+- Able to edit student by clicking link on their show page
 - Able to delete question by clicking button on its show page
 - Able to edit question by clicking link on show page

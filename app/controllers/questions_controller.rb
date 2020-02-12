@@ -17,8 +17,8 @@ class QuestionsController < ApplicationController
 
   #Show page for a particular question
   get '/questions/:id' do
-    if logged_in?
-      @question = Question.find_by(id: params[:id])
+    @question = Question.find_by(id: params[:id])
+    if logged_in? && @question 
       @topics = @question.topics
       @difficulty = @question.difficulty
       @prompt = @question.prompt 

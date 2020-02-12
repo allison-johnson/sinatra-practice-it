@@ -10,12 +10,16 @@
 <%= @prompt %>
 
 <h3>Topics:</h3>
-<ul>
-<% @topics.each do |topic| %>
-  <li><a href=<%= "/topics/#{topic.id}" %>><%= "#{topic.name}" %></a></li>
-<% end %>
-</ul>
-
+<% if @question.topics.count == 0 %>
+  </h4>No topics have been assigned to this question yet.</h4>
+<% else %>
+  <ul>
+  <% @topics.each do |topic| %>
+    <li><a href=<%= "/topics/#{topic.id}" %>><%= "#{topic.name}" %></a></li>
+  <% end %>
+  </ul>
+<% end #if %>
+<br><br>
 <a href=<%= "/questions/#{@question.id}/edit" %> class="btn">Edit Question</a>
 <br><br>
 
