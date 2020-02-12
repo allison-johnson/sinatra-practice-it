@@ -12,6 +12,7 @@
 <h3>Topics:</h3>
 <ul>
 <% @topics.each do |topic| %>
-  <li><%= topic.name %></li>
+  <li><a href=<%= "/topics/#{topic.id}" %>><%= "#{topic.name}" %></a></li>
 <% end %>
 </ul>
+
