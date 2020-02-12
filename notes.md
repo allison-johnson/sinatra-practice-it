@@ -12,15 +12,12 @@ To do
 
 - Radio buttons for difficulty?
 
-- Where to redirect to if a teacher tries to edit a question they don't own? (Generic failure page?)
-
 - Move index action to parent controller? What should index page look like? (Maybe a link to log in if user isn't logged in, otherwise link to teacher's show page)
 
 - Where to redirect once topic/question/student is successfully created? Back to teacher show page!
 
-- Add "Back to Teacher Homepage" button to all pages
-
 Additional Features
+- alphabetize topic list on teacher show page and topic index page
 - on student creation/update validate that grade is a number 9-12
 - import CSV files with topics and questions ("Question #1", etc.) and use to seed databases
 - on question creation, allow teacher to create a new topic as well
@@ -74,4 +71,6 @@ Complete
 
 - Added edit/delete buttons to teacher show page
 - Before a teacher is deleted, their owned_questions get reassigned to the first teacher in the database
+
 - Root index homepage '/' has sign up and delete links
+- Add "Back to Teacher Homepage" button to all pages
