@@ -1,6 +1,4 @@
 To do
-- When user navigates to /teachers/:id, they should see login page if they are not logged in OR they are logged in, but not as that teacher
-
 - Teacher show page URL should be /teachers/:username instead of /teachers/:id
 
 - Delete action for topics?
@@ -13,8 +11,6 @@ To do
 - Redirect for delete action? (Really, clean up all failures and worst-case redirects)
 
 - Teacher should be able to click on a question to see its show page, and then click on a button that says: assign to student. They should see a list of all students who have not been assigned that question, and then be able to check all the students they want to assign it to.
-
-- Seed database!
 
 - Radio buttons for difficulty?
 

@@ -25,6 +25,16 @@ class TeachersController < ApplicationController
     end #if
   end #action 
 
+  #edit action
+  get '/teachers/:id/edit' do
+    if logged_in? && current_user.username == Teacher.find_by(id: params[:id]).username
+      erb :'teachers/edit'
+    else  
+      @current_teacher = Teacher.find_by(id: session[:id])
+      erb :'failure'
+    end #if
+  end #action
+
   #new action
   get '/signup' do
     if logged_in?
