@@ -1,5 +1,9 @@
 To do
-- Delete pages for questions and topics
+- Edit Question button on question show page
+
+- Add teacher_name attribute "Ms. Johnson" and use that for display purposes
+
+- Delete action for topics?
     * If a question was only associated with Topic X and then Topic X gets deleted, what should happen to the question?
 
 - Do validations get checked when you update an object?
@@ -83,3 +87,4 @@ Complete
 - Edit page for question's prompt and topics
 
 - Able to delete student by clicking button on their show page
+- Able to delete question by clicking button on its show page
