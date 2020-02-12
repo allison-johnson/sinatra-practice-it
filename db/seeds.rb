@@ -1,3 +1,8 @@
+require_relative '../app/models/teacher.rb'
+require_relative '../app/models/student.rb'
+require_relative '../app/models/question.rb'
+require_relative '../app/models/topic.rb'
+
 andy = Teacher.create(username: "achen", password: "engineering")
 kyle = Teacher.create(username: "kcoapman", password: "math")
 ted = Teacher.create(username: "tcuevas", password: "math")

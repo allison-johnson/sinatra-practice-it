@@ -1,6 +1,8 @@
 To do
 - When user navigates to /teachers/:id, they should see login page if they are not logged in OR they are logged in, but not as that teacher
 
+- Teacher show page URL should be /teachers/:username instead of /teachers/:id
+
 - Delete action for topics?
     * If a question was only associated with Topic X and then Topic X gets deleted, what should happen to the question?
 

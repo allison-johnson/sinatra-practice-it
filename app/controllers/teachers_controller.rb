@@ -16,8 +16,11 @@ class TeachersController < ApplicationController
     @owned_questions = Question.all.select{|question| question.owner_id == params[:id].to_i}
     if logged_in? && @teacher.username == current_user.username
       erb :'teachers/show'
+    elsif logged_in? && @teacher.username != current_user.username
+      @current_teacher = Teacher.find_by(id: session[:id])
+      erb :'failure'
     else
-      redirect '/'
+      redirect '/login'
     end #if
   end #action 
 
