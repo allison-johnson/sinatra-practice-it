@@ -1,1 +1,18 @@
-Successfully navigated to edit page
+<% if logged_in? && @teacher.id == session[:id] %>
+  <h2><%= "Edit Information for #{@teacher.first_name.capitalize} #{@teacher.last_name.capitalize}" %></h2>
+
+  <form action=<%= "/teachers/#{@teacher.id}" %> method="POST">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+
+    <h3><label for="first_name">Edit First Name: </label></h3>
+    <input type="text" name="first_name" id="first_name" value="<%= @teacher.first_name %>">
+
+    <h3><label for="last_name">Edit Last Name: </label></h3>
+    <input type="text" name="last_name" id="last_name" value="<%= @teacher.last_name %>">
+
+    <h3><label for="username">Change Username: </label></h3>
+    <input type="text" name="username" id="username" value="<%= @teacher.username %>">
+
+    <br><br><input type="submit" value="Save Edits">
+  </form>
+<% end %>

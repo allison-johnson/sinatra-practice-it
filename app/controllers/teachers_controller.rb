@@ -27,11 +27,14 @@ class TeachersController < ApplicationController
 
   #edit action
   get '/teachers/:id/edit' do
-    if logged_in? && current_user.username == Teacher.find_by(id: params[:id]).username
+    @teacher = Teacher.find_by(id: params[:id])
+    if logged_in? && @teacher && current_user.username == @teacher.username
       erb :'teachers/edit'
-    else  
+    elsif logged_in?
       @current_teacher = Teacher.find_by(id: session[:id])
       erb :'failure'
+    else
+      redirect '/'
     end #if
   end #action
 
@@ -57,6 +60,19 @@ class TeachersController < ApplicationController
         flash[:message] = "Error!" #How to recognize which field didn't validate correctly?
         redirect '/signup'
       end #if able to save
+    end #if
+  end #action
+
+  #update action
+  patch '/teachers/:id' do
+    @teacher = Teacher.find_by(id: params[:id])
+    if params[:first_name] == "" || params[:last_name] == "" || params[:username] == ""
+      redirect "/teachers/#{params[:id]}/edit"
+    else
+      @teacher.update(first_name: params[:first_name])
+      @teacher.update(last_name: params[:last_name])
+      @teacher.update(username: params[:username])
+      redirect "/teachers/#{session[:id]}"
     end #if
   end #action
 

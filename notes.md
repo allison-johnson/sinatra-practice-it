@@ -1,4 +1,6 @@
 To do
+- Add 'edit teacher info' link to teacher show page
+
 - Teacher show page URL should be /teachers/:username instead of /teachers/:id
 
 - Delete action for topics?
