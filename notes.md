@@ -1,5 +1,11 @@
 To do
+- When you delete a teacher: what happens to their questions, students, etc???
+    * Their owned questions still exist, with the "old" owner_id ... maybe change the owner_id of the question to 'nil' or 0 when owner is deleted?
+
 - Add 'edit teacher info' link to teacher show page
+- Teacher delete action, with a delete button on their show page
+
+- Homepage '/' has sign up and login buttons
 
 - Teacher show page URL should be /teachers/:username instead of /teachers/:id
 
@@ -46,6 +52,7 @@ Additional Features
 - confirm password 
 - auto suggest usernmame (first_initial-dot-last_name-number)
 - for students, validate uniqueness of first/last name combination
+- ability to change password?
 
 Complete
 - add checkboxes to Create Question form so teachers can select from existing topics

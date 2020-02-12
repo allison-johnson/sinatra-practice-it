@@ -108,6 +108,27 @@ class TeachersController < ApplicationController
     # end #if
   end #logout
 
+  #delete action
+  delete '/teachers/:id' do
+    @teacher = Teacher.find_by(id: params[:id])
+    if logged_in? && @teacher && current_user.username == @teacher.username
+      @owned_questions = @teacher.owned_questions 
 
+      #Before deleting teacher, reset owner_id of their owned questions
+      @owned_questions.each do |question|
+        question.update(owner_id: Teacher.all.first.id) 
+        #question.save 
+      end #do
+
+      Teacher.delete(params[:id])
+      redirect '/'
+
+    elsif logged_in?
+      @current_teacher = Teacher.find_by(id: session[:id])
+      erb :'failure'
+    else
+      redirect '/'
+    end #if
+  end #delete action
 
 end #class 

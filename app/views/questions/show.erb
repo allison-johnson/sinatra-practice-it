@@ -1,7 +1,11 @@
 <h2><%= "Information for Question ##{@question.id}" %></h2>
 
 <h3>Question Owner:</h3>
-<%= "#{@owner.first_name.capitalize} #{@owner.last_name.capitalize}" %>
+<% if @owner_id.to_i > 0 %>
+  <%= "#{@question.owner.first_name.capitalize} #{@question.owner.last_name.capitalize}" %>
+<% else %>
+  <%= "This question currently has no owner" %>
+<% end %>
 
 <h3>Difficulty:</h3>
 <%= @difficulty.capitalize %>

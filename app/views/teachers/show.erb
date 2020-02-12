@@ -34,4 +34,14 @@
 <a href=<%= "/topics/new" %> class="btn">Create a New Topic</a>
 <a href=<%= "/logout" %> class="btn">Logout</a>
 
+<% if @teacher.id == current_user.id %>
+  <br><br>
+  <a href=<%= "/teachers/#{@teacher.id}/edit" %> class="btn">Edit User Information</a>
+  <br><br>
+
+  <form action="/teachers/<%=@teacher.id%>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Teacher Account">
+  </form>
+<% end %>
 

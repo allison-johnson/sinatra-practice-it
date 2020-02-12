@@ -22,7 +22,8 @@ class QuestionsController < ApplicationController
       @topics = @question.topics
       @difficulty = @question.difficulty
       @prompt = @question.prompt 
-      @owner = Teacher.find_by(id: @question.owner_id) #use this in show page
+      @owner_id = @question.owner_id
+      #@owner = Teacher.find_by(id: @question.owner_id) #use this in show page
       erb :'questions/show'
     else
       redirect '/'
