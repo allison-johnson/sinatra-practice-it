@@ -1,4 +1,7 @@
 To do
+- Delete pages for questions and topics
+    * If a question was only associated with Topic X and then Topic X gets deleted, what should happen to the question?
+
 - Do validations get checked when you update an object?
 
 - Update action: teacher
@@ -10,9 +13,6 @@ To do
 - Seed database!
 
 - Radio buttons for difficulty
-
-- Delete pages for questions, students, and topics
-    * If a question was only associated with Topic X and then Topic X gets deleted, what should happen to the question?
 
 - Where to redirect if correct teacher is not logged in???
 
@@ -81,3 +81,5 @@ Complete
 - Add "not found" functionality to show pages for individual questions/students/topics with nonexistent id's
 
 - Edit page for question's prompt and topics
+
+- Able to delete student by clicking button on their show page
