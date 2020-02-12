@@ -18,8 +18,6 @@ To do
 
 - Radio buttons for difficulty?
 
-- Where to redirect if correct teacher is not logged in???
-
 - Where to redirect to if a teacher tries to edit a question they don't own? (Generic failure page?)
 
 - Move index action to parent controller? What should index page look like? (Maybe a link to log in if user isn't logged in, otherwise link to teacher's show page)
