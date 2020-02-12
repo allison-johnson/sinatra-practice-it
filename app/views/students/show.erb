@@ -10,4 +10,8 @@
 </ul>
 
 <br>
-<a href=<%= "/students/#{@student.id}/delete" %> class="btn">Delete Student</a>
+
+<form action="/students/<%=@student.id%>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Student">
+</form>
