@@ -29,6 +29,16 @@ class StudentsController < ApplicationController
     end
   end
 
+  #Edit action
+  get '/students/:id/edit' do
+    @student = Student.find_by(id: params[:id])
+    if logged_in? && @student.teacher == current_user
+      erb :'students/edit'
+    else
+      redirect '/'
+    end #if
+  end #action
+
   #Show a all of a teacher's students (index action)
   get '/:username/students' do
     #binding.pry 

@@ -1,0 +1,18 @@
+<% if logged_in? && @student.teacher == current_user %>
+  <h2>Edit Student Information</h2>
+
+  <form action=<%= "/students/#{@student.id}" %> method="POST">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+
+    <h3><label for="first_name">Edit Student's First Name: </label></h3>
+    <input type="text" name="first_name" id="first_name" value="<%= @student.first_name %>">
+
+    <h3><label for="last_name">Edit Student's Last Name: </label></h3>
+    <input type="text" name="last_name" id="last_name" value="<%= @student.last_name %>">
+
+    <h3><label for="grade">Edit Student's Grade: </label></h3>
+    <input type="text" name="grade" id="grade" value="<%= @student.grade %>">
+
+    <br><br><input type="submit" value="Save Edits">
+  </form>
+<% end %>

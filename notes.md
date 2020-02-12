@@ -1,5 +1,6 @@
 To do
-- Edit page for students
+- Update action: teacher
+- Update action: student
 
 - Seed database!
 
@@ -15,10 +16,6 @@ To do
 - Move index action to parent controller? What should index page look like? (Maybe a link to log in if user isn't logged in, otherwise link to teacher's show page)
 
 - Where to redirect once topic/question/student is successfully created? Back to teacher show page OR to the show page for that object...
-
-- Update action: teacher
-- Update action: student
-- Update action: question
 
 - Add "Back to Teacher Homepage" button to all pages
 
