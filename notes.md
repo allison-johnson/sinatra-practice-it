@@ -1,6 +1,11 @@
 To do
+- Do validations get checked when you update an object?
+
 - Update action: teacher
-- Update action: student
+
+- Redirect for delete action? (Really, clean up all failures and worst-case redirects)
+
+- Teacher should be able to click on a question to see its show page, and then click on a button that says: assign to student. They should see a list of all students who have not been assigned that question, and then be able to check all the students they want to assign it to.
 
 - Seed database!
 
@@ -34,6 +39,7 @@ Teacher can:
 - right now, all teachers can access all questions ... is that what I want?
 
 Additional Features
+- on student creation/update validate that grade is a number 9-12
 - import CSV files with topics and questions ("Question #1", etc.) and use to seed databases
 - on question creation, allow teacher to create a new topic as well
 - a layout page! make it pretty...
@@ -42,7 +48,6 @@ Additional Features
 - confirm password 
 - auto suggest usernmame (first_initial-dot-last_name-number)
 - for students, validate uniqueness of first/last name combination
-- teachers should really be able to share questions ... maybe questions get stored in some sort of global question bank?
 
 Complete
 - add checkboxes to Create Question form so teachers can select from existing topics

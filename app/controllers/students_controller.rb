@@ -85,4 +85,15 @@ class StudentsController < ApplicationController
     end #if
   end #action
 
+  #delete action
+  delete '/students/:id/delete' do
+    @student = Student.find_by(id: params[:id])
+    if logged_in? && current_user == @student_teacher
+      Student.delete(params[:id])
+      redirect "/teachers/#{session[:id]}"
+    else
+      redirect '/'
+    end #if
+  end #delete
+
 end #class
