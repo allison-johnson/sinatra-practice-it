@@ -16,9 +16,8 @@
 <% end %>
 </ul>
 
-<br>
 <a href=<%= "/questions/#{@question.id}/edit" %> class="btn">Edit Question</a>
-<br>
+<br><br>
 
 <form action="/questions/<%=@question.id%>" method="POST">
   <input type="hidden" name="_method" value="DELETE">

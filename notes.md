@@ -1,5 +1,5 @@
 To do
-- Edit Question button on question show page
+
 
 - Add teacher_name attribute "Ms. Johnson" and use that for display purposes
 
@@ -88,3 +88,4 @@ Complete
 
 - Able to delete student by clicking button on their show page
 - Able to delete question by clicking button on its show page
+- Able to edit question by clicking link on show page
