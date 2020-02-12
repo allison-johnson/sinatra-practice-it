@@ -49,6 +49,7 @@ class TeachersController < ApplicationController
 
   #create action
   post '/teachers' do #If anything was blank, back to signup...
+    binding.pry
     if params[:first_name] == "" || params[:last_name] == "" || params[:user_name] == "" || params[:password] == ""
       flash[:message] = "Whoops - looks like you forgot to complete a field!"
       redirect '/signup'

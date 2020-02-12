@@ -1,10 +1,4 @@
 To do
-- When you delete a teacher: what happens to their questions, students, etc???
-    * Their owned questions still exist, with the "old" owner_id ... maybe change the owner_id of the question to 'nil' or 0 when owner is deleted?
-
-- Add 'edit teacher info' link to teacher show page
-- Teacher delete action, with a delete button on their show page
-
 - Homepage '/' has sign up and login buttons
 
 - Teacher show page URL should be /teachers/:username instead of /teachers/:id
@@ -29,18 +23,6 @@ To do
 - Where to redirect once topic/question/student is successfully created? Back to teacher show page OR to the show page for that object...
 
 - Add "Back to Teacher Homepage" button to all pages
-
-Teacher can:
-- log in
-- log out
-- create a new student (if logged in)
-    - student associated with teacher
-- create a new question (if logged in)
-    - associate it with a new topic or an existing topic 
-- create a new topic
-- edit their own information 
-- edit a student, a question, or a topic (from that student, question, or topic's show page)
-- right now, all teachers can access all questions ... is that what I want?
 
 Additional Features
 - on student creation/update validate that grade is a number 9-12
@@ -93,3 +75,6 @@ Complete
 - Able to edit question by clicking link on show page
 
 - If question has no topics yet, indicate that on question show page
+
+- Added edit/delete buttons to teacher show page
+- Before a teacher is deleted, their owned_questions get reassigned to the first teacher in the database
