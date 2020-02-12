@@ -45,7 +45,7 @@ class TopicsController < ApplicationController
     else #If nothing was blank, attempt to create a new Topic...
       topic = Topic.new(name: params[:name])
       if topic.save #All validations passed
-        redirect '/'
+        redirect to "/teachers/#{@teacher.id}"
       else #Some validation failed, try again...
         #flash[:message] = "Error!" #How to recognize which field didn't validate correctly?
         redirect '/topics/new'

@@ -80,7 +80,7 @@ class TeachersController < ApplicationController
   get '/login' do
     if logged_in?
       @teacher = current_user
-      redirect to "/#{@teacher.username}/students"
+      redirect to "/teachers/#{@teacher.id}"
     else
       erb :'teachers/login'
     end

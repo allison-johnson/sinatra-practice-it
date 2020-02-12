@@ -1,14 +1,10 @@
 To do
-- Homepage '/' has sign up and login buttons
-
 - Teacher show page URL should be /teachers/:username instead of /teachers/:id
 
 - Delete action for topics?
     * If a question was only associated with Topic X and then Topic X gets deleted, what should happen to the question?
 
 - Do validations get checked when you update an object?
-
-- Update action: teacher
 
 - Redirect for delete action? (Really, clean up all failures and worst-case redirects)
 
@@ -20,7 +16,7 @@ To do
 
 - Move index action to parent controller? What should index page look like? (Maybe a link to log in if user isn't logged in, otherwise link to teacher's show page)
 
-- Where to redirect once topic/question/student is successfully created? Back to teacher show page OR to the show page for that object...
+- Where to redirect once topic/question/student is successfully created? Back to teacher show page!
 
 - Add "Back to Teacher Homepage" button to all pages
 
@@ -78,3 +74,4 @@ Complete
 
 - Added edit/delete buttons to teacher show page
 - Before a teacher is deleted, their owned_questions get reassigned to the first teacher in the database
+- Root index homepage '/' has sign up and delete links
