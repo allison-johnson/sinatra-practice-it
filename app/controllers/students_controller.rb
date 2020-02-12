@@ -72,4 +72,17 @@ class StudentsController < ApplicationController
     end #if
   end #action
 
+  #update action 
+  patch '/students/:id' do
+    @student = Student.find_by(id: params[:id])
+    if params[:first_name] == "" || params[:last_name] == "" || params[:grade] == ""
+      redirect "/students/#{params[:id]}/edit"
+    else
+      @student.update(first_name: params[:first_name])
+      @student.update(last_name: params[:last_name])
+      @student.update(grade: params[:grade])
+      redirect "/teachers/#{session[:id]}"
+    end #if
+  end #action
+
 end #class
