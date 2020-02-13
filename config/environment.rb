@@ -11,4 +11,4 @@ Bundler.require(:default, ENV['SINATRA_ENV'])
 set(:database, {:adapter => "sqlite3", :database => "db/#{ENV['SINATRA_ENV']}.sqlite3"})
 
 require_all 'app'
-require_all 'lib'
+#require_all 'lib'

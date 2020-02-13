@@ -1,4 +1,8 @@
 To do
+- From homepage '/' sign up doesn't work ... also log in takes you to your teacher show page if you're already logged in, is that what i want???
+
+- On login show page, include link to sign up page in case someone doesn't have an account
+
 - Teacher show page URL should be /teachers/:username instead of /teachers/:id
 
 - Delete action for topics?
