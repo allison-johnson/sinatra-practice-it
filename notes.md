@@ -1,6 +1,4 @@
 To do
-- From homepage '/' sign up doesn't work ... also log in takes you to your teacher show page if you're already logged in, is that what i want???
-
 - On login show page, include link to sign up page in case someone doesn't have an account
 
 - Teacher show page URL should be /teachers/:username instead of /teachers/:id
@@ -12,13 +10,10 @@ To do
 
 - Redirect for delete action? (Really, clean up all failures and worst-case redirects)
 
-- Teacher should be able to click on a question to see its show page, and then click on a button that says: assign to student. They should see a list of all students who have not been assigned that question, and then be able to check all the students they want to assign it to.
-
 - Radio buttons for difficulty?
 
 - Move index action to parent controller? What should index page look like? (Maybe a link to log in if user isn't logged in, otherwise link to teacher's show page)
 
-- Where to redirect once topic/question/student is successfully created? Back to teacher show page!
 
 Additional Features
 - alphabetize topic list on teacher show page and topic index page

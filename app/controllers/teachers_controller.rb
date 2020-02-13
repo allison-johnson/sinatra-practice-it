@@ -49,19 +49,22 @@ class TeachersController < ApplicationController
 
   #create action
   post '/teachers' do #If anything was blank, back to signup...
-    #binding.pry
+    binding.pry 
     if params[:first_name] == "" || params[:last_name] == "" || params[:user_name] == "" || params[:password] == ""
       flash[:message] = "Whoops - looks like you forgot to complete a field!"
       redirect '/signup'
+
     else #If nothing was blank, attempt to create a new Teacher...
+
       teacher = Teacher.new(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], password: params[:password])
-      if teacher.save #All validations passed
-        redirect '/login'
-      else #Some validation failed, back to signup...
-        flash[:message] = "Error! Try a different username..." #How to recognize which field didn't validate correctly?
+      if !teacher.save #Some validation failed
+        flash[:message] = "#{teacher.errors.messages.keys.first.to_s} #{teacher.errors.messages.values.first[0]}"
         redirect '/signup'
+      else #All validations passed
+        redirect '/login'
       end #if able to save
-    end #if
+
+    end #if 
   end #action
 
   #update action
