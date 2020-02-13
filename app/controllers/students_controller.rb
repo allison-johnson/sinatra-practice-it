@@ -1,4 +1,5 @@
-require 'rack-flash'
+require 'rack-flash', :sweep => true 
+require 'pry'
 
 class StudentsController < ApplicationController
   enable :sessions
@@ -54,12 +55,18 @@ class StudentsController < ApplicationController
 
   #create action
   post '/students' do
+    binding.pry 
     if params[:first_name] == "" || params[:last_name] == "" || params[:grade] == "" 
+      puts "empty field"
       flash[:message] = "Whoops - looks like you forgot to complete a field!"
       #binding.pry 
       redirect '/students/new'
+    
+    elsif Student.all.map{|student| "#{student.first_name} #{student.last_name}"}.include? "#{params[:first_name]} #{params[:last_name]}"
+      flash[:message] = "Looks like that student is already in our database!"
+      redirect '/students/new'
 
-    else #If nothing was blank, attempt to create a new Student...
+    else #If nothing was blank and student is not already in DB attempt to create a new Student...
       student = Student.new(first_name: params[:first_name], last_name: params[:last_name], grade: params[:grade].to_i)
       #binding.pry 
       if !student.save #Some validation failed, back /students/new
