@@ -5,7 +5,7 @@
 
 - Allows teachers to share questions with each other, while maintaining ownership of questions they have created.
 
-- Uses bcrypt for password authentication.
+- Uses `bcrypt` for password authentication.
 
 ## Development
 - After checking out the repo, run `bundle install` to install dependencies. You can run `rake console` for an interactive prompt that will allow you to experiment. Edit `db/seeds.rb` and then run `rake db:seed` to seed the database with your own data.
