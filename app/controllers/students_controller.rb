@@ -55,20 +55,23 @@ class StudentsController < ApplicationController
   #create action
   post '/students' do
     if params[:first_name] == "" || params[:last_name] == "" || params[:grade] == "" 
-      #flash[:message] = "Whoops - looks like you forgot to complete a field!"
-      binding.pry 
+      flash[:message] = "Whoops - looks like you forgot to complete a field!"
+      #binding.pry 
       redirect '/students/new'
+
     else #If nothing was blank, attempt to create a new Student...
       student = Student.new(first_name: params[:first_name], last_name: params[:last_name], grade: params[:grade].to_i)
-      if student.save #All validations passed
+      #binding.pry 
+      if !student.save #Some validation failed, back /students/new
+        flash[:message] = "#{student.errors.messages.keys.first.to_s} #{student.errors.messages.values.first[0]}"
+        redirect '/students/new'
+      else #All validations passed, redirect to teacher show page
         @teacher = Teacher.find_by(id: session[:id])
         @teacher.students << student 
         @teacher.save 
         redirect "/teachers/#{@teacher.id}"
-      else #Some validation failed, back to signup...
-        #flash[:message] = "Error!" #How to recognize which field didn't validate correctly?
-        redirect '/students/new'
       end #if able to save
+
     end #if
   end #action
 
