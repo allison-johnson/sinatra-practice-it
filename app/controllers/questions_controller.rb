@@ -92,6 +92,19 @@ class QuestionsController < ApplicationController
     end #if
   end #action
 
+  #add/remove students from a question (update action)
+  patch '/questions/:id/update-students' do
+    @question = Question.find_by(id: params[:id])
+    params[:students].each do |student|
+      student = Student.find_by(id: student)
+      if !@question.students.include?(student)
+        @question.students << student 
+        @question.save 
+      end #if
+    end #do
+    redirect "/teachers/#{session[:id]}"
+  end #action
+
   #delete action
   delete '/questions/:id' do
     @question = Question.find_by(id: params[:id])

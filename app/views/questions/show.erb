@@ -20,14 +20,19 @@
   </ul>
 <% end #if %>
 
-<h3>Select students who have completed this question:</h3>
-<% @teacher.students.each do |student| %>
-  <% if @question.students.include?(student) %>
-    <input type="checkbox" name="students[]" id="<%= student.id %>" value="<%= student.id %>" checked><%= "#{student.first_name} #{student.last_name}" %><br>
-  <% else %>
-    <input type="checkbox" name="students[]" id="<%= student.id %>" value="<%= student.id %>"><%= "#{student.first_name} #{student.last_name}" %><br>
-  <% end %>
-<% end %>
+<form action="/questions/<%=@question.id%>/update-students" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <h3>Select students who have completed this question:</h3>
+  <% @teacher.students.each do |student| %>
+    <% if @question.students.include?(student) %>
+        <input type="checkbox" name="students[]" id="<%= student.id %>" value="<%= student.id %>" checked><%= "#{student.first_name} #{student.last_name}" %><br>
+    <% else %>
+        <input type="checkbox" name="students[]" id="<%= student.id %>" value="<%= student.id %>"><%= "#{student.first_name} #{student.last_name}" %><br>
+    <% end #if %>
+  <% end #do %>
+  <br><input type="submit" value="Update Students">
+</form>
+<br>
 
 <% if @question.owner_id == current_user.id %>
   <br><br>
@@ -39,7 +44,7 @@
     <input type="submit" value="Delete Question">
   </form>
 <% end %>
-<br><br>
+
 <a href=<%= "/teachers/#{session[:id]}" %> class="btn">Back to Teacher Homepage</a>
 
 
