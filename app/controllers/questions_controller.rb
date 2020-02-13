@@ -19,6 +19,7 @@ class QuestionsController < ApplicationController
   get '/questions/:id' do
     @question = Question.find_by(id: params[:id])
     if logged_in? && @question 
+      @teacher = Teacher.find_by(id: session[:id])
       @topics = @question.topics
       @difficulty = @question.difficulty
       @prompt = @question.prompt 

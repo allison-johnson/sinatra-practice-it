@@ -20,6 +20,11 @@
   </ul>
 <% end #if %>
 
+<h3>Select students who have completed this question:</h3>
+<% @teacher.students.each do |student| %>
+  <input type="checkbox" name="students[]" id="<%= student.id %>" value="<%= student.id %>"><%= "#{student.first_name} #{student.last_name}" %>
+<% end %>
+
 <% if @question.owner_id == current_user.id %>
   <br><br>
   <a href=<%= "/questions/#{@question.id}/edit" %> class="btn">Edit Question</a>
@@ -30,7 +35,7 @@
     <input type="submit" value="Delete Question">
   </form>
 <% end %>
-
+<br><br>
 <a href=<%= "/teachers/#{session[:id]}" %> class="btn">Back to Teacher Homepage</a>
 
 
