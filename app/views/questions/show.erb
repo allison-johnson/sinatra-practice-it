@@ -22,7 +22,11 @@
 
 <h3>Select students who have completed this question:</h3>
 <% @teacher.students.each do |student| %>
-  <input type="checkbox" name="students[]" id="<%= student.id %>" value="<%= student.id %>"><%= "#{student.first_name} #{student.last_name}" %>
+  <% if @question.students.include?(student) %>
+    <input type="checkbox" name="students[]" id="<%= student.id %>" value="<%= student.id %>" checked><%= "#{student.first_name} #{student.last_name}" %><br>
+  <% else %>
+    <input type="checkbox" name="students[]" id="<%= student.id %>" value="<%= student.id %>"><%= "#{student.first_name} #{student.last_name}" %><br>
+  <% end %>
 <% end %>
 
 <% if @question.owner_id == current_user.id %>
