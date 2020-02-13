@@ -1,4 +1,4 @@
-class AddOwnerIdToQuestion < ActiveRecord::Migration[6.0]
+class AddOwnerIdToQuestion < ActiveRecord::Migration
   def change
     add_column :questions, :owner_id, :integer 
   end

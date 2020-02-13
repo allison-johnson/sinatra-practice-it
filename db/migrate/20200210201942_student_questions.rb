@@ -1,4 +1,4 @@
-class StudentQuestions < ActiveRecord::Migration[6.0]
+class StudentQuestions < ActiveRecord::Migration
 
   def change
     create_table :student_questions do |t|

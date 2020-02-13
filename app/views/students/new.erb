@@ -1,6 +1,8 @@
+<div>
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
+</div>
 
 <h1><%= "Create a New Student for #{@teacher.first_name.upcase} #{@teacher.last_name.upcase} Below" %></h1>
 

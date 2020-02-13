@@ -1,4 +1,4 @@
-require 'rack-flash', :sweep => true 
+require 'rack-flash'
 require 'pry'
 
 class StudentsController < ApplicationController
@@ -78,7 +78,6 @@ class StudentsController < ApplicationController
         @teacher.save 
         redirect "/teachers/#{@teacher.id}"
       end #if able to save
-
     end #if
   end #action
 

@@ -1,4 +1,4 @@
-class CreateQuestionTopics < ActiveRecord::Migration[6.0]
+class CreateQuestionTopics < ActiveRecord::Migration
 
   def change
     create_table :question_topics do |t|
