@@ -55,14 +55,14 @@ class StudentsController < ApplicationController
 
   #create action
   post '/students' do
-    binding.pry 
+    #binding.pry 
     if params[:first_name] == "" || params[:last_name] == "" || params[:grade] == "" 
       puts "empty field"
       flash[:message] = "Whoops - looks like you forgot to complete a field!"
       #binding.pry 
       redirect '/students/new'
     
-    elsif Student.all.map{|student| "#{student.first_name} #{student.last_name}"}.include? "#{params[:first_name]} #{params[:last_name]}"
+    elsif Student.all.map{|student| "#{student.first_name} #{student.last_name}"}.include?("#{params[:first_name]} #{params[:last_name]}")
       flash[:message] = "Looks like that student is already in our database!"
       redirect '/students/new'
 

@@ -1,6 +1,4 @@
 To do
-- On login show page, include link to sign up page in case someone doesn't have an account
-
 - Teacher show page URL should be /teachers/:username instead of /teachers/:id
 
 - Delete action for topics?
@@ -17,7 +15,7 @@ To do
 
 Additional Features
 - alphabetize topic list on teacher show page and topic index page
-- import CSV files with topics and questions ("Question #1", etc.) and use to seed databases
+- import CSV files with topics and questions ("Question #1", etc.) and use to seed databases. Allow user to do the same!
 - on question creation, allow teacher to create a new topic as well
 - a layout page! make it pretty...
 - when teacher logs in they can select whether to view all students or view all questions
