@@ -23,4 +23,3 @@ Additional Features
 - auto suggest usernmame (first_initial-last_name-number)
 - for students, validate uniqueness of first/last name combination
 - ability to change password?
-
