@@ -23,12 +23,12 @@ class TeachersController < ApplicationController
 
   #edit action
   get '/teachers/:id/edit' do
-    @teacher = Teacher.find_by(id: params[:id])
+    set_teacher 
     if logged_in? && @teacher && current_user.username == @teacher.username
       @field_values = {first_name: @teacher.first_name, last_name: @teacher.last_name, username: @teacher.username} 
       erb :'teachers/edit'
     elsif logged_in?
-      @current_teacher = Teacher.find_by(id: session[:id])
+      set_teacher(session)
       erb :'failure'
     else
       redirect '/'
@@ -51,37 +51,28 @@ class TeachersController < ApplicationController
       flash[:message] = "Whoops - password confirmation unsuccessful!"
       @field_values = params[:teacher]
       erb :'teachers/new'
-
     else #password confirmation is valid
       teacher = Teacher.new(params[:teacher])
       if !teacher.save 
         flash[:message] = teacher.errors.full_messages.join(", ")
         @field_values = params[:teacher]
-        binding.pry 
         erb :'teachers/new'
-
       else #all validations passed
         redirect '/login'
-
       end #if able to save
-
     end #if 
   end #action
 
   #update action
   patch '/teachers/:id' do
     set_teacher 
-
     if !@teacher.update(first_name: params[:first_name], last_name: params[:last_name], username: params[:username])
       flash[:message] = @teacher.errors.full_messages.join(", ")
       @field_values = params 
       erb :'teachers/edit'
-
     else
       redirect "/teachers/#{session[:id]}"
-      
     end #if
-
   end #action
 
   get '/login' do
@@ -95,11 +86,9 @@ class TeachersController < ApplicationController
 
   post '/login' do
     @teacher = Teacher.find_by(username: params[:username])
-
     if @teacher && @teacher.authenticate(params[:password])
       session[:id] = @teacher.id 
       redirect to "/teachers/#{@teacher.id}"
-      #redirect to "/#{@teacher.username}/students"
     else
       redirect to '/login'
     end #if
@@ -108,12 +97,6 @@ class TeachersController < ApplicationController
   get '/logout' do
     session.clear
     redirect to '/login'
-    # if logged_in?
-    #   session.clear 
-    #   redirect to '/login'
-    # else
-    #   redirect to '/'
-    # end #if
   end #logout
 
   #delete action
@@ -121,18 +104,13 @@ class TeachersController < ApplicationController
     set_teacher
     if logged_in? && @teacher && current_user.username == @teacher.username
       @owned_questions = @teacher.owned_questions 
-
-      #Before deleting teacher, reset owner_id of their owned questions
       @owned_questions.each do |question|
         question.update(owner_id: Teacher.all.first.id) 
-        #question.save 
       end #do
-
       Teacher.delete(params[:id])
       redirect '/'
-
     elsif logged_in?
-      @current_teacher = Teacher.find_by(id: session[:id])
+      set_teacher(session)
       erb :'failure'
     else
       redirect '/'
@@ -141,8 +119,8 @@ class TeachersController < ApplicationController
 
   private 
 
-  def set_teacher
-    @teacher = Teacher.find_by(id: params[:id])
+  def set_teacher(a_hash = params) 
+    @teacher = Teacher.find_by(id: a_hash[:id])
   end #set_teacher
 
 end #class 
