@@ -99,11 +99,10 @@ class TeachersController < ApplicationController
 
   #delete action
   delete '/teachers/:id' do
-    set_teacher
-    if logged_in? && @teacher && current_user.username == @teacher.username
+    if set_teacher && authorized?(@teacher)
       @owned_questions = @teacher.owned_questions 
       @owned_questions.each do |question|
-        question.update(owner_id: Teacher.all.first.id) 
+        @teacher == Teacher.all.first ? question.update(owner_id: Teacher.all.last.id) : question.update(owner_id: Teacher.all.first.id)
       end #do
       Teacher.delete(params[:id])
       redirect '/'
