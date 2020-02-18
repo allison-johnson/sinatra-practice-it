@@ -14,8 +14,7 @@ class StudentsController < ApplicationController
 
   get '/students/new' do
     if logged_in?
-      #@teacher = Teacher.find_by(id: session[:id])
-      set_teacher 
+      set_teacher(session) 
       erb :'students/new'
     else
       redirect '/login'
