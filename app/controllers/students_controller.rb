@@ -36,13 +36,14 @@ class StudentsController < ApplicationController
     end
   end
 
-  #Edit action
-  get '/students/:id/edit' do
-    @student = Student.find_by(id: params[:id])
-    if logged_in? && @student.teacher == current_user
+  #Edit action 
+  get '/students/:id/edit' do 
+    if !set_student
+      redirect '/failure'
+    elsif authorized?(@student.teacher)
       erb :'students/edit'
     else
-      redirect '/'
+      redirect '/failure'
     end #if
   end #action
 
