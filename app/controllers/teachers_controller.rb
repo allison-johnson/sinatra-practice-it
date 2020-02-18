@@ -39,6 +39,7 @@ class TeachersController < ApplicationController
     if logged_in?
       redirect '/'
     else
+      @field_values = {}
       erb :'teachers/new'
     end #if
   end #action
@@ -57,20 +58,25 @@ class TeachersController < ApplicationController
     #   session[:desired_username] = params[:username]
     #   redirect 'signup'
 
-    # else #If nothing was blank, attempt to create a new Teacher...
-    #binding.pry   
-    teacher = Teacher.new(params[:teacher])
-      binding.pry 
-      #teacher = Teacher.new(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], password: params[:password])
+    if params[:teacher][:password] != params[:password][:confirm]
+      flash[:message] = "Whoops - password confirmation unsuccessful!"
+      @field_values = params[:teacher]
+      erb :'teachers/new'
+
+    else #password confirmation is valid
+      teacher = Teacher.new(params[:teacher])
       if !teacher.save #Some validation failed
-        #flash[:message] = "#{teacher.errors.messages.keys.first.to_s} #{teacher.errors.messages.values.first[0]}"
         flash[:message] = teacher.errors.full_messages.join(", ")
-        redirect '/signup'
-      else #All validations passed
+        @field_values = params[:teacher]
+        binding.pry 
+        erb :'teachers/new'
+
+      else #all validations passed
         redirect '/login'
+
       end #if able to save
 
-    # end #if 
+    end #if 
   end #action
 
   #update action
