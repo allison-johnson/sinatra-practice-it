@@ -6,6 +6,12 @@ class StudentsController < ApplicationController
   use Rack::Flash 
 
   #new action
+
+  #def redirect_if_not_logged_in
+  # def authorized?(record)
+  # authorized?(@student)
+  # if current_user !== record.user -> redirect
+
   get '/students/new' do
     if logged_in?
       @teacher = Teacher.find_by(id: session[:id])
@@ -63,6 +69,7 @@ class StudentsController < ApplicationController
       #binding.pry 
       redirect '/students/new'
     
+    #active record where method 
     elsif Student.all.map{|student| "#{student.first_name} #{student.last_name}"}.include?("#{params[:first_name]} #{params[:last_name]}")
       flash[:message] = "Looks like that student is already in our database!"
       redirect '/students/new'

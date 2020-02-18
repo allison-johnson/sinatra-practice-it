@@ -3,8 +3,9 @@ require 'rack-flash'
 class TeachersController < ApplicationController
   enable :sessions
   use Rack::Flash 
+  
 
-  #show action, loads show page for individual teacher
+  #show (read) action, loads show page for individual teacher
   get '/teachers/:id' do
     @teacher = Teacher.find_by(id: params[:id])
     @others_questions = Question.all.select{|question| question.owner_id != params[:id].to_i}
@@ -45,27 +46,31 @@ class TeachersController < ApplicationController
   #create action
   post '/teachers' do #If anything was blank, back to signup...
     #binding.pry 
-    if params[:first_name] == "" || params[:last_name] == "" || params[:user_name] == "" || params[:password] == ""|| params[:confirm_password] == ""
-      flash[:message] = "Whoops - looks like you forgot to complete a field!"
-      redirect '/signup'
+    # if params[:first_name] == "" || params[:last_name] == "" || params[:user_name] == "" || params[:password] == ""|| params[:confirm_password] == ""
+    #   flash[:message] = "Whoops - looks like you forgot to complete a field!"
+    #   redirect '/signup'
 
-    elsif params[:password] != params[:confirm_password] #Check to make sure password was confirmed correctly
-      flash[:message] = "Whoops - looks like your password confirmation was incorrect!"
-      session[:desired_first_name] = params[:first_name] 
-      session[:desired_last_name] = params[:last_name] 
-      session[:desired_username] = params[:username]
-      redirect 'signup'
+    # if params[:password] != params[:confirm_password] #Check to make sure password was confirmed correctly
+    #   flash[:message] = "Whoops - looks like your password confirmation was incorrect!"
+    #   session[:desired_first_name] = params[:first_name] 
+    #   session[:desired_last_name] = params[:last_name] 
+    #   session[:desired_username] = params[:username]
+    #   redirect 'signup'
 
-    else #If nothing was blank, attempt to create a new Teacher...
-      teacher = Teacher.new(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], password: params[:password])
+    # else #If nothing was blank, attempt to create a new Teacher...
+    #binding.pry   
+    teacher = Teacher.new(params[:teacher])
+      binding.pry 
+      #teacher = Teacher.new(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], password: params[:password])
       if !teacher.save #Some validation failed
-        flash[:message] = "#{teacher.errors.messages.keys.first.to_s} #{teacher.errors.messages.values.first[0]}"
+        #flash[:message] = "#{teacher.errors.messages.keys.first.to_s} #{teacher.errors.messages.values.first[0]}"
+        flash[:message] = teacher.errors.full_messages.join(", ")
         redirect '/signup'
       else #All validations passed
         redirect '/login'
       end #if able to save
 
-    end #if 
+    # end #if 
   end #action
 
   #update action
@@ -93,7 +98,7 @@ class TeachersController < ApplicationController
   post '/login' do
     @teacher = Teacher.find_by(username: params[:username])
 
-    if @teacher != nil && @teacher.authenticate(params[:password])
+    if @teacher && @teacher.authenticate(params[:password])
       session[:id] = @teacher.id 
       redirect to "/teachers/#{@teacher.id}"
       #redirect to "/#{@teacher.username}/students"
@@ -115,7 +120,7 @@ class TeachersController < ApplicationController
 
   #delete action
   delete '/teachers/:id' do
-    @teacher = Teacher.find_by(id: params[:id])
+    set_teacher
     if logged_in? && @teacher && current_user.username == @teacher.username
       @owned_questions = @teacher.owned_questions 
 
@@ -135,5 +140,11 @@ class TeachersController < ApplicationController
       redirect '/'
     end #if
   end #delete action
+
+  private 
+
+  def set_teacher
+    @teacher = Teacher.find_by(id: params[:id])
+  end #set_teacher
 
 end #class 

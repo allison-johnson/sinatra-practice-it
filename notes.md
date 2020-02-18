@@ -5,6 +5,10 @@ To do
 
 [x] Radio buttons for difficulty?
 
+[ ] Utilize admin access
+
+[ ] Add password validation to update actions
+
 Additional Features
 - in student_questions join table, add boolean 'completed' column to keep track of whether the student has completed the question (not just been assigned).
     * On student show page, distinguish between assigned/completed questions

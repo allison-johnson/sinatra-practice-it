@@ -8,26 +8,26 @@
 
 <form action="/teachers" method="POST">
   <label for="first_name">First Name: </label>
-  <input type="text" id="first_name" name="first_name"
+  <input type="text" id="first_name" name="teacher[first_name]"
   value=<%= session[:desired_first_name] if session[:desired_first_name] %>>
   <br><br>
 
   <label for="last_name">Last Name: </label>
-  <input type="text" id="last_name" name="last_name"
+  <input type="text" id="last_name" name="teacher[last_name]"
   value=<%= session[:desired_last_name] if session[:desired_last_name] %>>
   <br><br>
 
   <label for="username">Username: </label>
-  <input type="text" id="username" name="username"
+  <input type="text" id="username" name="teacher[username]"
   value=<%= session[:desired_username] if session[:desired_username] %>>
   <br><br>
 
   <label for="password">Password: </label>
-  <input type="password" id="password" name="password"/>
+  <input type="password" id="password" name="teacher[password]"/>
   <br><br>
 
   <label for="confirm_password">Confirm Password: </label>
-  <input type="password" id="confirm_password" name="confirm_password"/>
+  <input type="password" id="confirm_password" name="password[confirm]"/>
   <br><br>
 
   <input type="submit" value="Create Account"/>
