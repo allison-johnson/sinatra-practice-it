@@ -14,11 +14,11 @@ class Question < ActiveRecord::Base
     validates_uniqueness_of :prompt 
 
     def self.my_questions(an_owner_id)
-      Question.all.select{|question| question.owner_id == an_owner_id }
+      Question.all.select{|question| question.owner_id == an_owner_id.to_i }
     end #self.my_questions
 
     def self.other_questions(an_owner_id)
-      Question.all.select{|question| question.owner_id != an_owner_id }
+      Question.all.select{|question| question.owner_id != an_owner_id.to_i }
     end #self.other_questions
 
 

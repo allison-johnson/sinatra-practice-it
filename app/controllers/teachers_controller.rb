@@ -8,8 +8,8 @@ class TeachersController < ApplicationController
   get '/teachers/:id' do
     set_teacher 
     if authorized?(@teacher)
-      @owned_questions = Question.my_questions(params[:id].to_i)
-      @others_questions = Question.other_questions(params[:id].to_i)
+      @owned_questions = Question.my_questions(params[:id])
+      @others_questions = Question.other_questions(params[:id])
       @topics = Topic.all
       erb :'teachers/show'
     elsif logged_in? && @teacher.username != current_user.username
@@ -22,8 +22,7 @@ class TeachersController < ApplicationController
 
   #edit action
   get '/teachers/:id/edit' do
-    set_teacher 
-    if logged_in? && @teacher && current_user.username == @teacher.username
+    if set_teacher && authorized?(@teacher)
       @field_values = {first_name: @teacher.first_name, last_name: @teacher.last_name, username: @teacher.username} 
       erb :'teachers/edit'
     elsif logged_in?
