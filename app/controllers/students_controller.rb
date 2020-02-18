@@ -16,6 +16,7 @@ class StudentsController < ApplicationController
   get '/students/new' do
     if logged_in?
       set_teacher(session) 
+      @field_values = {}
       erb :'students/new'
     else
       redirect '/login'
@@ -48,34 +49,48 @@ class StudentsController < ApplicationController
     end #if
   end #action
 
-  #create action
+  #create action 
   post '/students' do
-    #binding.pry 
-    if params[:first_name] == "" || params[:last_name] == "" || params[:grade] == "" 
-      puts "empty field"
-      flash[:message] = "Whoops - looks like you forgot to complete a field!"
-      #binding.pry 
-      redirect '/students/new'
-    
-    #active record where method 
-    elsif Student.all.map{|student| "#{student.first_name} #{student.last_name}"}.include?("#{params[:first_name]} #{params[:last_name]}")
-      flash[:message] = "Looks like that student is already in our database!"
-      redirect '/students/new'
-
-    else #If nothing was blank and student is not already in DB attempt to create a new Student...
-      student = Student.new(first_name: params[:first_name], last_name: params[:last_name], grade: params[:grade].to_i)
-      #binding.pry 
-      if !student.save #Some validation failed, back /students/new
-        flash[:message] = "#{student.errors.messages.keys.first.to_s} #{student.errors.messages.values.first[0]}"
-        redirect '/students/new'
-      else #All validations passed, redirect to teacher show page
-        @teacher = Teacher.find_by(id: session[:id])
-        @teacher.students << student 
-        @teacher.save 
-        redirect "/teachers/#{@teacher.id}"
-      end #if able to save
+    set_teacher(session)
+    student = Student.new(params)
+    if !student.save
+      flash[:message] = student.errors.full_messages.join(", ")
+      @field_values = params
+      erb :'students/new'
+    else
+      set_teacher(session)
+      @teacher.students << student 
+      @teacher.save 
+      redirect "/teachers/#{@teacher.id}"
     end #if
   end #action
+
+  # post '/students' do
+  #   if params[:first_name] == "" || params[:last_name] == "" || params[:grade] == "" 
+  #     puts "empty field"
+  #     flash[:message] = "Whoops - looks like you forgot to complete a field!"
+  #     #binding.pry 
+  #     redirect '/students/new'
+    
+  #   #active record where method 
+  #   elsif Student.all.map{|student| "#{student.first_name} #{student.last_name}"}.include?("#{params[:first_name]} #{params[:last_name]}")
+  #     flash[:message] = "Looks like that student is already in our database!"
+  #     redirect '/students/new'
+
+  #   else #If nothing was blank and student is not already in DB attempt to create a new Student...
+  #     student = Student.new(first_name: params[:first_name], last_name: params[:last_name], grade: params[:grade].to_i)
+  #     #binding.pry 
+  #     if !student.save #Some validation failed, back /students/new
+  #       flash[:message] = "#{student.errors.messages.keys.first.to_s} #{student.errors.messages.values.first[0]}"
+  #       redirect '/students/new'
+  #     else #All validations passed, redirect to teacher show page
+  #       @teacher = Teacher.find_by(id: session[:id])
+  #       @teacher.students << student 
+  #       @teacher.save 
+  #       redirect "/teachers/#{@teacher.id}"
+  #     end #if able to save
+  #   end #if
+  # end #action
 
   #update action 
   patch '/students/:id' do

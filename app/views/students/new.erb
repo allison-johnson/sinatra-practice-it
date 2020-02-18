@@ -8,15 +8,18 @@
 
 <form action="/students" method="POST">
   <label for="first_name">First Name: </label>
-  <input type="text" id="first_name" name="first_name"/>
+  <input type="text" id="first_name" name="first_name"
+  value=<%= @field_values[:first_name] if @field_values[:first_name] %>>
   <br><br>
 
   <label for="last_name">Last Name: </label>
-  <input type="text" id="last_name" name="last_name"/>
+  <input type="text" id="last_name" name="last_name"
+  value=<%= @field_values[:last_name] if @field_values[:last_name] %>>
   <br><br>
 
   <label for="grade">Grade: </label>
-  <input type="text" id="grade" name="grade"/>
+  <input type="text" id="grade" name="grade"
+  value=<%= @field_values[:grade] if @field_values[:grade] %>>
   <br><br>
 
   <input type="submit" value="Create Student"/>
