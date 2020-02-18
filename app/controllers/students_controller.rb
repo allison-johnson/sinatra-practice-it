@@ -12,6 +12,7 @@ class StudentsController < ApplicationController
   # authorized?(@student)
   # if current_user !== record.user -> redirect
 
+  #new action
   get '/students/new' do
     if logged_in?
       set_teacher(session) 
@@ -21,7 +22,7 @@ class StudentsController < ApplicationController
     end #if
   end #action
 
-  #Show page for a particular student
+  #show action
   get '/students/:id' do
     if !set_student
       redirect '/failure'
@@ -36,7 +37,7 @@ class StudentsController < ApplicationController
     end
   end
 
-  #Edit action 
+  #edit action 
   get '/students/:id/edit' do 
     if !set_student
       redirect '/failure'
@@ -44,19 +45,6 @@ class StudentsController < ApplicationController
       erb :'students/edit'
     else
       redirect '/failure'
-    end #if
-  end #action
-
-  #Show a all of a teacher's students (index action)
-  get '/:username/students' do
-    #binding.pry 
-    if logged_in? && current_user.username == params[:username]
-      #@teacher = current_user
-      @teacher = Teacher.find_by(username: params[:username]) #also need to make sure that teacher is currently logged in...
-      @students = @teacher.students #could also use Student.all for this, which is a problem...
-      erb :'students/index'
-    else
-      redirect '/'
     end #if
   end #action
 
