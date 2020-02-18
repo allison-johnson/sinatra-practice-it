@@ -23,10 +23,10 @@ class StudentsController < ApplicationController
 
   #Show page for a particular student
   get '/students/:id' do
-    @student = Student.find_by(id: params[:id])
-    if @student.nil?
+    if !set_student
       redirect '/failure'
     elsif @student && logged_in? && current_user.username == @student.teacher.username 
+    #elsif authorized?(@student.teacher)  
       @name = "#{@student.first_name.upcase} #{@student.last_name.upcase}"
       @grade = @student.grade
       @student_questions = @student.questions

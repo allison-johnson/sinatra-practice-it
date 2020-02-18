@@ -35,6 +35,10 @@ class ApplicationController < Sinatra::Base
     def set_student(a_hash = params) 
       @student = Student.find_by(id: a_hash[:id])
     end #set_teacher
+
+    def authorized?(record)
+      logged_in? && record.username == current_user.username
+    end #authorized?
   end #helpers
 
 end #class
