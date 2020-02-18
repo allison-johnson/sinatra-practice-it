@@ -12,4 +12,6 @@ class Question < ActiveRecord::Base
 
     validates_presence_of :difficulty, :prompt
     validates_uniqueness_of :prompt 
+
+    
 end #class
