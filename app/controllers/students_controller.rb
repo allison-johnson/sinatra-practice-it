@@ -23,7 +23,8 @@ class StudentsController < ApplicationController
     elsif @student && logged_in? && current_user.username == @student.teacher.username 
       @name = "#{@student.first_name.upcase} #{@student.last_name.upcase}"
       @grade = @student.grade
-      @questions = @student.questions
+      @student_questions = @student.questions
+      @questions = Question.all
       erb :'students/show'
     else
       redirect '/'
@@ -93,6 +94,19 @@ class StudentsController < ApplicationController
       redirect "/teachers/#{session[:id]}"
     end #if
   end #action
+
+  #update students' completed questions
+  patch '/students/:id/update-questions' do
+    @student = Student.find_by(id: params[:id])
+    @student.questions.clear 
+    if params[:questions]
+      params[:questions].each do |question_id|
+        Question.find_by(id: question_id).students << @student 
+        @student.save 
+      end #do
+    end #if
+    redirect "/teachers/#{session[:id]}"
+  end #action 
 
   #delete action
   delete '/students/:id' do

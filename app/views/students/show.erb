@@ -4,10 +4,23 @@
 
 <h3>Completed Questions:</h3>
 <ul>
-<% @questions.each do |question| %>
+<% @student_questions.each do |question| %>
   <li><%= question.prompt %></li>
 <% end %>
 </ul>
+
+<h3>Questions Completed by Student:</h3>
+  <form action=<%= "/students/#{@student.id}/update-questions" %> method="POST">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+    <% @questions.each do |question| %>
+      <% if question.students.include?(@student) %>
+        <input type="checkbox" name="questions[]" id="<%= question.id %>" value="<%= question.id %>" checked><%= question.prompt %><br>
+      <% else %>
+        <input type="checkbox" name="questions[]" id="<%= question.id %>" value="<%= question.id %>"><%= question.prompt %><br>
+      <% end #if %>
+    <% end #do %>
+    <br><input type="submit" value="Edit Completed Questions">
+  </form>
 
 <br>
 <a href=<%= "/students/#{@student.id}/edit" %> class="btn">Edit Student</a>
