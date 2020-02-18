@@ -1,13 +1,9 @@
 To do
-[] Teacher show page URL should be /teachers/:username instead of /teachers/:id
-
-[] Redirect for delete action? (Really, clean up all failures and worst-case redirects)
+[] Ideally, teacher show page URL should be /teachers/:slug-name instead of /teachers/:id
 
 [x] Password confirmation on sign-up page
 
-[] Radio buttons for difficulty?
-
-[] Move index action to parent controller? What should index page look like? (Maybe a link to log in if user isn't logged in, otherwise link to teacher's show page)
+[x] Radio buttons for difficulty?
 
 Additional Features
 - in student_questions join table, add boolean 'completed' column to keep track of whether the student has completed the question (not just been assigned).
@@ -20,7 +16,7 @@ Additional Features
 
 - a layout page! make it pretty...
 
-- confirm password 
+- confirm password when trying to delete account
 
 - auto suggest usernmame (first_initial-last_name-number)
 

@@ -4,11 +4,6 @@ class TeachersController < ApplicationController
   enable :sessions
   use Rack::Flash 
 
-  #index action
-  get '/' do
-    erb :'index'
-  end #action
-
   #show action, loads show page for individual teacher
   get '/teachers/:id' do
     @teacher = Teacher.find_by(id: params[:id])

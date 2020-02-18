@@ -5,18 +5,30 @@
 <h1><%= "Create a New Question Below" %></h1>
 
 <form action="/questions" method="POST">
-  <h3><label for="difficulty">Difficulty: </label>
+  <h2>Difficulty: </h2>
+  <input type="radio" id="easy" name="difficulty" value="easy">
+  <label for="easy">Easy</label>
+
+  <input type="radio" id="medium" name="difficulty" value="medium">
+  <label for="medium">Medium</label>
+
+  <input type="radio" id="hard" name="difficulty" value="hard">
+  <label for="hard">Hard</label><br><br>
+  
+
+  <!--<h3><label for="difficulty">Difficulty: </label>
   <input type="text" id="difficulty" name="difficulty"/>
+  <br><br>-->
+
+  <h2><label for="prompt">Prompt: </label></h2>
+  <input type="text" id="prompt" name="prompt"/></h3>
   <br><br>
 
-  <label for="prompt">Prompt: </label>
-  <input type="text" id="prompt" name="prompt"/></h3>
-  <br>
-
-  <h2>Select Question Topic(s)</h2>
+  <h2>Select Question Topic(s):</h2>
   <% @topics.each do |topic| %>
-    <h3><input type="checkbox" name="topics[]" id="<%= topic.name %>" value="<%= topic.name %>"><%= topic.name %></h3>
+    <input type="checkbox" name="topics[]" id="<%= topic.name %>" value="<%= topic.name %>"><%= topic.name %><br>
   <% end %>
+  <br>
 
   <input type="submit" value="Create Question"/>
   

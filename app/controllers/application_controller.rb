@@ -9,6 +9,11 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret"
   end
   
+  #index action
+  get '/' do
+    erb :'index'
+  end #action
+
   get '/failure' do
     @teacher = Teacher.find_by(id: session[:id])
     erb :'failure'
