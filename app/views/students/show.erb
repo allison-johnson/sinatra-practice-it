@@ -2,14 +2,14 @@
 
 <h3><%= "Grade: #{@grade}" %></h3>
 
-<h3>Completed Questions:</h3>
+<!--<h3>Completed Questions:</h3>
 <ul>
 <% @student_questions.each do |question| %>
   <li><%= question.prompt %></li>
 <% end %>
-</ul>
+</ul>-->
 
-<h3>Questions Completed by Student:</h3>
+<h3><%= "#{@student.first_name}'s Completed Questions" %></h3>
   <form action=<%= "/students/#{@student.id}/update-questions" %> method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
     <% @questions.each do |question| %>
@@ -23,7 +23,7 @@
   </form>
 
 <br>
-<a href=<%= "/students/#{@student.id}/edit" %> class="btn">Edit Student</a>
+<a href=<%= "/students/#{@student.id}/edit" %> class="btn">Edit Student Information</a>
 <br><br>
 
 <form action="/students/<%=@student.id%>" method="POST">

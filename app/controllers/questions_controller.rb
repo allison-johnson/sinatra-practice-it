@@ -64,9 +64,11 @@ class QuestionsController < ApplicationController
       question = Question.new(prompt: params[:prompt], difficulty: params[:difficulty], owner_id: session[:id])
       if question.save #All validations passed, so associate question with selected topics
         topics = params[:topics]
-        topics.each do |topic|
-          question.topics << Topic.find_by(name: topic)
-        end #each
+        if topics 
+          topics.each do |topic|
+            question.topics << Topic.find_by(name: topic)
+          end #each
+        end #if
         redirect "/teachers/#{session[:id]}"
       else #Some validation failed, try again...
         #flash[:message] = "Error!" #How to recognize which field didn't validate correctly?

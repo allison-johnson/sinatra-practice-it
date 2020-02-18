@@ -50,12 +50,18 @@ class TeachersController < ApplicationController
   #create action
   post '/teachers' do #If anything was blank, back to signup...
     #binding.pry 
-    if params[:first_name] == "" || params[:last_name] == "" || params[:user_name] == "" || params[:password] == ""
+    if params[:first_name] == "" || params[:last_name] == "" || params[:user_name] == "" || params[:password] == ""|| params[:confirm_password] == ""
       flash[:message] = "Whoops - looks like you forgot to complete a field!"
       redirect '/signup'
 
-    else #If nothing was blank, attempt to create a new Teacher...
+    elsif params[:password] != params[:confirm_password] #Check to make sure password was confirmed correctly
+      flash[:message] = "Whoops - looks like your password confirmation was incorrect!"
+      session[:desired_first_name] = params[:first_name] 
+      session[:desired_last_name] = params[:last_name] 
+      session[:desired_username] = params[:username]
+      redirect 'signup'
 
+    else #If nothing was blank, attempt to create a new Teacher...
       teacher = Teacher.new(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], password: params[:password])
       if !teacher.save #Some validation failed
         flash[:message] = "#{teacher.errors.messages.keys.first.to_s} #{teacher.errors.messages.values.first[0]}"
