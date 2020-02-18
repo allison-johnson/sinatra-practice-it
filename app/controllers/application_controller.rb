@@ -31,6 +31,10 @@ class ApplicationController < Sinatra::Base
     def set_teacher(a_hash = params) 
       @teacher = Teacher.find_by(id: a_hash[:id])
     end #set_teacher
+
+    def set_student(a_hash = params) 
+      @student = Student.find_by(id: a_hash[:id])
+    end #set_teacher
   end #helpers
 
 end #class
