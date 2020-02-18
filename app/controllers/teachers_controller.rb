@@ -115,9 +115,6 @@ class TeachersController < ApplicationController
   end #delete action
 
   private 
-
-  # def authorized?(record)
-  #   logged_in? && record.username == current_user.username
-  # end #authorized?
+  #No methods here at the moment
 
 end #class 

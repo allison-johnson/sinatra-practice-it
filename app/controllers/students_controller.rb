@@ -25,8 +25,7 @@ class StudentsController < ApplicationController
   get '/students/:id' do
     if !set_student
       redirect '/failure'
-    elsif @student && logged_in? && current_user.username == @student.teacher.username 
-    #elsif authorized?(@student.teacher)  
+    elsif authorized?(@student.teacher)  
       @name = "#{@student.first_name.upcase} #{@student.last_name.upcase}"
       @grade = @student.grade
       @student_questions = @student.questions
