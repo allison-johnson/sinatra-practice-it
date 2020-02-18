@@ -115,10 +115,10 @@ class TeachersController < ApplicationController
   end #delete action
 
   private 
-
-  def set_teacher(a_hash = params) 
-    @teacher = Teacher.find_by(id: a_hash[:id])
-  end #set_teacher
+  
+  # def set_teacher(a_hash = params) 
+  #   @teacher = Teacher.find_by(id: a_hash[:id])
+  # end #set_teacher
 
   def authorized?(record)
     logged_in? && record.username == current_user.username

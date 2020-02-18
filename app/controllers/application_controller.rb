@@ -27,6 +27,10 @@ class ApplicationController < Sinatra::Base
     def current_user
         @current_user ||= Teacher.find_by(id: session[:id]) if session[:id]
     end #current_user
+
+    def set_teacher(a_hash = params) 
+      @teacher = Teacher.find_by(id: a_hash[:id])
+    end #set_teacher
   end #helpers
 
 end #class
