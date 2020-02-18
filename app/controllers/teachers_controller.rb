@@ -8,8 +8,9 @@ class TeachersController < ApplicationController
   #show (read) action, loads show page for individual teacher
   get '/teachers/:id' do
     set_teacher 
-    @others_questions = Question.all.select{|question| question.owner_id != params[:id].to_i}
-    @owned_questions = Question.all.select{|question| question.owner_id == params[:id].to_i}
+    @owned_questions = Question.my_questions(params[:id].to_i)
+    @others_questions = Question.other_questions(params[:id].to_i)
+   
     if logged_in? && @teacher.username == current_user.username
       @topics = Topic.all
       erb :'teachers/show'
