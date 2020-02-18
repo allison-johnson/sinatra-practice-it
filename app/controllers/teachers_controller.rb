@@ -4,18 +4,16 @@ class TeachersController < ApplicationController
   enable :sessions
   use Rack::Flash 
   
-
-  #show (read) action, loads show page for individual teacher
+  #show (read) action
   get '/teachers/:id' do
     set_teacher 
-    @owned_questions = Question.my_questions(params[:id].to_i)
-    @others_questions = Question.other_questions(params[:id].to_i)
-   
-    if logged_in? && @teacher.username == current_user.username
+    if authorized?(@teacher)
+      @owned_questions = Question.my_questions(params[:id].to_i)
+      @others_questions = Question.other_questions(params[:id].to_i)
       @topics = Topic.all
       erb :'teachers/show'
     elsif logged_in? && @teacher.username != current_user.username
-      @current_teacher = Teacher.find_by(id: session[:id])
+      set_teacher(session)
       erb :'failure'
     else
       redirect '/login'
@@ -123,5 +121,9 @@ class TeachersController < ApplicationController
   def set_teacher(a_hash = params) 
     @teacher = Teacher.find_by(id: a_hash[:id])
   end #set_teacher
+
+  def authorized?(record)
+    logged_in? && record.username == current_user.username
+  end #authorized?
 
 end #class 
