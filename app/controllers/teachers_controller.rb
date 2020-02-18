@@ -25,6 +25,7 @@ class TeachersController < ApplicationController
   get '/teachers/:id/edit' do
     @teacher = Teacher.find_by(id: params[:id])
     if logged_in? && @teacher && current_user.username == @teacher.username
+      @field_values = {first_name: @teacher.first_name, last_name: @teacher.last_name, username: @teacher.username} 
       erb :'teachers/edit'
     elsif logged_in?
       @current_teacher = Teacher.find_by(id: session[:id])
@@ -45,19 +46,7 @@ class TeachersController < ApplicationController
   end #action
 
   #create action
-  post '/teachers' do #If anything was blank, back to signup...
-    #binding.pry 
-    # if params[:first_name] == "" || params[:last_name] == "" || params[:user_name] == "" || params[:password] == ""|| params[:confirm_password] == ""
-    #   flash[:message] = "Whoops - looks like you forgot to complete a field!"
-    #   redirect '/signup'
-
-    # if params[:password] != params[:confirm_password] #Check to make sure password was confirmed correctly
-    #   flash[:message] = "Whoops - looks like your password confirmation was incorrect!"
-    #   session[:desired_first_name] = params[:first_name] 
-    #   session[:desired_last_name] = params[:last_name] 
-    #   session[:desired_username] = params[:username]
-    #   redirect 'signup'
-
+  post '/teachers' do 
     if params[:teacher][:password] != params[:password][:confirm]
       flash[:message] = "Whoops - password confirmation unsuccessful!"
       @field_values = params[:teacher]
@@ -65,7 +54,7 @@ class TeachersController < ApplicationController
 
     else #password confirmation is valid
       teacher = Teacher.new(params[:teacher])
-      if !teacher.save #Some validation failed
+      if !teacher.save 
         flash[:message] = teacher.errors.full_messages.join(", ")
         @field_values = params[:teacher]
         binding.pry 
@@ -81,15 +70,18 @@ class TeachersController < ApplicationController
 
   #update action
   patch '/teachers/:id' do
-    @teacher = Teacher.find_by(id: params[:id])
-    if params[:first_name] == "" || params[:last_name] == "" || params[:username] == ""
-      redirect "/teachers/#{params[:id]}/edit"
+    set_teacher 
+
+    if !@teacher.update(first_name: params[:first_name], last_name: params[:last_name], username: params[:username])
+      flash[:message] = @teacher.errors.full_messages.join(", ")
+      @field_values = params 
+      erb :'teachers/edit'
+
     else
-      @teacher.update(first_name: params[:first_name])
-      @teacher.update(last_name: params[:last_name])
-      @teacher.update(username: params[:username])
       redirect "/teachers/#{session[:id]}"
+      
     end #if
+
   end #action
 
   get '/login' do
