@@ -28,7 +28,9 @@ class ApplicationController < Sinatra::Base
         @current_user ||= Teacher.find_by(id: session[:id]) if session[:id]
     end #current_user
 
-    def set_teacher(a_hash = params) 
+    def set_teacher(a_hash = params)
+      # attr_sym = attr.to_sym  #attr is a parameter
+      # @teacher = Teacher.find_by(attr_sym: a_hash[:attr_sym])
       @teacher = Teacher.find_by(id: a_hash[:id])
     end #set_teacher
 
@@ -42,7 +44,6 @@ class ApplicationController < Sinatra::Base
 
     def authorized?(record, attr)
       logged_in? && record.send("#{attr}") == current_user.send("#{attr}")
-      #logged_in? && record.username == current_user.username
     end #authorized?
 
     def redirect_if_not_logged_in

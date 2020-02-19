@@ -1,5 +1,5 @@
 To do
-[] Ideally, teacher show page URL should be /teachers/:slug-name instead of /teachers/:id
+[ ] Validate student first_name + last_name combination in Student class
 
 [x] Password confirmation on sign-up page
 
@@ -8,6 +8,8 @@ To do
 [ ] Utilize admin access
 
 [ ] Add password validation to update actions
+
+[ ] Make set_teacher method more versatile by accepting a second argument representing the attribute by which you are finding a teacher (id, username)
 
 Additional Features
 - in student_questions join table, add boolean 'completed' column to keep track of whether the student has completed the question (not just been assigned).
