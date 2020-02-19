@@ -77,22 +77,9 @@ class StudentsController < ApplicationController
     end #if
   end #action
 
-  #update action 
-  # patch '/students/:id' do
-  #   @student = Student.find_by(id: params[:id])
-  #   if params[:first_name] == "" || params[:last_name] == "" || params[:grade] == ""
-  #     redirect "/students/#{params[:id]}/edit"
-  #   else
-  #     @student.update(first_name: params[:first_name])
-  #     @student.update(last_name: params[:last_name])
-  #     @student.update(grade: params[:grade])
-  #     redirect "/teachers/#{session[:id]}"
-  #   end #if
-  # end #action
-
-  #update students' completed questions
+  #update action (for a student's questions)
   patch '/students/:id/update-questions' do
-    @student = Student.find_by(id: params[:id])
+    set_student 
     @student.questions.clear 
     if params[:questions]
       params[:questions].each do |question_id|
@@ -100,7 +87,7 @@ class StudentsController < ApplicationController
         @student.save 
       end #do
     end #if
-    redirect "/teachers/#{session[:id]}"
+    redirect "/students/#{@student.id}"
   end #action 
 
   #delete action
