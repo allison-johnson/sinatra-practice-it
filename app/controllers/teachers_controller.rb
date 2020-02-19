@@ -6,17 +6,16 @@ class TeachersController < ApplicationController
   
   #show (read) action
   get '/teachers/:id' do
+    redirect_if_not_logged_in
     set_teacher 
     if authorized?(@teacher)
       @owned_questions = Question.my_questions(params[:id])
       @others_questions = Question.other_questions(params[:id])
       @topics = Topic.all
       erb :'teachers/show'
-    elsif logged_in? && @teacher.username != current_user.username
+    else
       set_teacher(session)
       erb :'failure'
-    else
-      redirect '/login'
     end #if
   end #action 
 
