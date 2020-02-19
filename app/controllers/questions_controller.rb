@@ -92,7 +92,7 @@ class QuestionsController < ApplicationController
 
   #delete action
   delete '/questions/:id' do
-    @question = Question.find_by(id: params[:id])
+    set_question 
     if logged_in? && current_user.id == @question.owner_id
       Question.delete(params[:id])
       redirect "/teachers/#{session[:id]}"
