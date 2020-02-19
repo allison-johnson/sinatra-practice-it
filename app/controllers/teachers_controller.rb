@@ -97,7 +97,7 @@ class TeachersController < ApplicationController
     redirect to '/login'
   end #logout
 
-  #delete action
+  #delete action #Make reassignment a private method
   delete '/teachers/:id' do
     if set_teacher && authorized?(@teacher)
       @owned_questions = @teacher.owned_questions 
