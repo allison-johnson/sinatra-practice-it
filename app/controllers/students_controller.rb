@@ -10,13 +10,10 @@ class StudentsController < ApplicationController
 
   #new action
   get '/students/new' do
-    if logged_in?
-      set_teacher(session) 
-      @field_values = {}
-      erb :'students/new'
-    else
-      redirect '/login'
-    end #if
+    redirect_if_not_logged_in 
+    set_teacher(session) 
+    @field_values = {}
+    erb :'students/new'
   end #action
 
   #show action
