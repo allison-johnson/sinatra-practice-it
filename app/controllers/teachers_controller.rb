@@ -99,15 +99,14 @@ class TeachersController < ApplicationController
 
   #delete action 
   delete '/teachers/:id' do
-    if set_teacher && authorized?(@teacher)
+    set_teacher 
+    if authorized?(@teacher)
       reassign_owned_questions(@teacher)
       Teacher.delete(params[:id])
       redirect '/'
-    elsif logged_in?
+    else
       set_teacher(session)
       erb :'failure'
-    else
-      redirect '/'
     end #if
   end #delete action
 
