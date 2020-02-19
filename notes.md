@@ -1,5 +1,5 @@
 To do
-[ ] Validate student first_name + last_name combination in Student class
+[x] Validate student first_name + last_name + grade combination in Student class
 
 [x] Password confirmation on sign-up page
 

@@ -1,8 +1,3 @@
-# require_relative '../app/models/teacher.rb'
-# require_relative '../app/models/student.rb'
-# require_relative '../app/models/question.rb'
-# require_relative '../app/models/topic.rb'
-
 #Teachers
 allison = Teacher.create(username: "ajohnson", password: "cs", first_name: "Allison", last_name: "Johnson")
 syrena = Teacher.create(username: "sburnam", password: "biology", first_name: "Syrena", last_name: "Burnam")
