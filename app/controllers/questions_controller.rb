@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
     erb :'questions/new'
   end #action
 
-  #Show page for a particular question
+  #show action 
   get '/questions/:id' do
     redirect_if_not_logged_in 
     set_teacher(session)
@@ -26,14 +26,15 @@ class QuestionsController < ApplicationController
     end
   end #action 
 
-  #Edit action
+  #Edit action #tesing 
   get '/questions/:id/edit' do
-    @question = Question.find_by(id: params[:id])
-    if logged_in? && @question.owner_id == session[:id]
+    redirect_if_not_logged_in 
+    if set_question && @question.owner_id == session[:id]
       @topics = Topic.all 
       erb :'questions/edit'
     else
-      redirect '/'
+      set_teacher(session)
+      erb :'failure'
     end #if
   end #action
 
