@@ -21,14 +21,13 @@ class TeachersController < ApplicationController
 
   #edit action
   get '/teachers/:id/edit' do
+    redirect_if_not_logged_in 
     if set_teacher && authorized?(@teacher)
       @field_values = {first_name: @teacher.first_name, last_name: @teacher.last_name, username: @teacher.username} 
       erb :'teachers/edit'
-    elsif logged_in?
+    else
       set_teacher(session)
       erb :'failure'
-    else
-      redirect '/'
     end #if
   end #action
 
