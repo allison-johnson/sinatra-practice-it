@@ -39,6 +39,12 @@ class ApplicationController < Sinatra::Base
     def authorized?(record)
       logged_in? && record.username == current_user.username
     end #authorized?
+
+    def redirect_if_not_logged_in
+      if !logged_in?
+        redirect '/login'
+      end #if
+    end #redirect_if_not_logged_in 
   end #helpers
 
 end #class
