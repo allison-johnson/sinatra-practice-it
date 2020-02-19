@@ -6,13 +6,9 @@ class QuestionsController < ApplicationController
 
   #new action
   get '/questions/new' do
-    if logged_in?
-      @topics = Topic.all 
-      @teacher = Teacher.find_by(id: session[:id]) #This is not actually used, as the question gets created for EVERYONE
-      erb :'questions/new'
-    else
-      redirect '/login'
-    end #if
+    redirect_if_not_logged_in
+    @topics = Topic.all 
+    erb :'questions/new'
   end #action
 
   #Show page for a particular question

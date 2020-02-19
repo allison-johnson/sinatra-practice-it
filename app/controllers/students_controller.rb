@@ -5,9 +5,6 @@ class StudentsController < ApplicationController
   enable :sessions
   use Rack::Flash 
 
-  #def redirect_if_not_logged_in
-  # if current_user !== record.user -> redirect
-
   #new action
   get '/students/new' do
     redirect_if_not_logged_in 
@@ -16,9 +13,10 @@ class StudentsController < ApplicationController
     erb :'students/new'
   end #action
 
-  #show action
+  #show action 
   get '/students/:id' do
-    if !set_student
+    redirect_if_not_logged_in 
+    if !set_student 
       redirect '/failure'
     elsif authorized?(@student.teacher)  
       @name = "#{@student.first_name.upcase} #{@student.last_name.upcase}"
@@ -27,12 +25,13 @@ class StudentsController < ApplicationController
       @questions = Question.all
       erb :'students/show'
     else
-      redirect '/'
+      redirect "/teachers/#{session[:id]}"
     end
   end
 
   #edit action 
   get '/students/:id/edit' do 
+    redirect_if_not_logged_in 
     if !set_student
       redirect '/failure'
     elsif authorized?(@student.teacher)

@@ -6,9 +6,8 @@ class TeachersController < ApplicationController
   
   #show (read) action
   get '/teachers/:id' do
-    redirect_if_not_logged_in
-    set_teacher 
-    if authorized?(@teacher)
+    redirect_if_not_logged_in 
+    if set_teacher && authorized?(@teacher)
       @owned_questions = Question.my_questions(params[:id])
       @others_questions = Question.other_questions(params[:id])
       @topics = Topic.all
@@ -97,8 +96,7 @@ class TeachersController < ApplicationController
 
   #delete action 
   delete '/teachers/:id' do
-    set_teacher 
-    if authorized?(@teacher)
+    if set_teacher && authorized?(@teacher)
       reassign_owned_questions(@teacher)
       Teacher.delete(params[:id])
       redirect '/'
