@@ -1,3 +1,9 @@
+<div>
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+</div>
+
 <% if logged_in? && @question.owner_id == session[:id] %>
   <h2><%= "Edit Question ##{@question.id}" %></h2>
 

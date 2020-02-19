@@ -61,19 +61,18 @@ class QuestionsController < ApplicationController
 
   #update action
   patch '/questions/:id' do
-    if params[:prompt] == ""
-      redirect "/questions/#{params[:id]}/edit"
+    set_question 
+    if !@question.update(prompt: params[:prompt])
+      flash[:message] = @question.errors.full_messages.join(", ")
+      @topics = Topic.all 
+      erb :'/questions/edit'
     else
-      @question = Question.find_by(id: params[:id])
-      @question.update(prompt: params[:prompt])
-
       @question.topics.clear
       params[:topics].each do |topic|
         @question.topics << Topic.find_by(name: topic)
       end #each
-
       redirect "/teachers/#{session[:id]}"
-    end #if
+    end #if 
   end #action
 
   #add/remove students from a question (update action)
