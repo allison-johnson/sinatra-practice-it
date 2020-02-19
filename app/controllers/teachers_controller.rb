@@ -7,7 +7,7 @@ class TeachersController < ApplicationController
   #show (read) action
   get '/teachers/:id' do
     redirect_if_not_logged_in 
-    if set_teacher && authorized?(@teacher)
+    if set_teacher && authorized?(@teacher, "username")
       @owned_questions = Question.my_questions(params[:id])
       @others_questions = Question.other_questions(params[:id])
       @topics = Topic.all
@@ -21,7 +21,7 @@ class TeachersController < ApplicationController
   #edit action
   get '/teachers/:id/edit' do
     redirect_if_not_logged_in 
-    if set_teacher && authorized?(@teacher)
+    if set_teacher && authorized?(@teacher, "username")
       @field_values = {first_name: @teacher.first_name, last_name: @teacher.last_name, username: @teacher.username} 
       erb :'teachers/edit'
     else
@@ -96,7 +96,7 @@ class TeachersController < ApplicationController
 
   #delete action 
   delete '/teachers/:id' do
-    if set_teacher && authorized?(@teacher)
+    if set_teacher && authorized?(@teacher, "username")
       reassign_owned_questions(@teacher)
       Teacher.delete(params[:id])
       redirect '/'

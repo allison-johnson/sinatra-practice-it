@@ -18,7 +18,7 @@ class StudentsController < ApplicationController
     redirect_if_not_logged_in 
     if !set_student 
       redirect '/failure'
-    elsif authorized?(@student.teacher)  
+    elsif authorized?(@student.teacher, "username")  
       @name = "#{@student.first_name.upcase} #{@student.last_name.upcase}"
       @grade = @student.grade
       @student_questions = @student.questions
@@ -34,7 +34,7 @@ class StudentsController < ApplicationController
     redirect_if_not_logged_in 
     if !set_student
       redirect '/failure'
-    elsif authorized?(@student.teacher)
+    elsif authorized?(@student.teacher, "username")
       @field_values = {}
       erb :'students/edit'
     else
@@ -85,7 +85,7 @@ class StudentsController < ApplicationController
   #delete action
   delete '/students/:id' do
     set_student 
-    if authorized?(@student.teacher)
+    if authorized?(@student.teacher, "username")
       Student.delete(params[:id])
       redirect "/teachers/#{session[:id]}"
     else

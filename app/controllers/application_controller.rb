@@ -40,8 +40,9 @@ class ApplicationController < Sinatra::Base
       @question = Question.find_by(id: params[:id])
     end #set_teacher
 
-    def authorized?(record)
-      logged_in? && record.username == current_user.username
+    def authorized?(record, attr)
+      logged_in? && record.send("#{attr}") == current_user.send("#{attr}")
+      #logged_in? && record.username == current_user.username
     end #authorized?
 
     def redirect_if_not_logged_in
