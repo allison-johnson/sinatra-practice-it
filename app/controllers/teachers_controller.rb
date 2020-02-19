@@ -97,13 +97,10 @@ class TeachersController < ApplicationController
     redirect to '/login'
   end #logout
 
-  #delete action #Make reassignment a private method
+  #delete action 
   delete '/teachers/:id' do
     if set_teacher && authorized?(@teacher)
-      @owned_questions = @teacher.owned_questions 
-      @owned_questions.each do |question|
-        @teacher == Teacher.all.first ? question.update(owner_id: Teacher.all.last.id) : question.update(owner_id: Teacher.all.first.id)
-      end #do
+      reassign_owned_questions(@teacher)
       Teacher.delete(params[:id])
       redirect '/'
     elsif logged_in?
@@ -115,6 +112,10 @@ class TeachersController < ApplicationController
   end #delete action
 
   private 
-  #No methods here at the moment
+  def reassign_owned_questions(teacher)
+    teacher.owned_questions.each do |question|
+      teacher == Teacher.all.first ? question.update(owner_id: Teacher.all.last.id) : question.update(owner_id: Teacher.all.first.id)
+    end #do
+  end #reassign_owned_questions
 
 end #class 

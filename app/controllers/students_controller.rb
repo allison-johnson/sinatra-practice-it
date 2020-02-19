@@ -5,11 +5,7 @@ class StudentsController < ApplicationController
   enable :sessions
   use Rack::Flash 
 
-  #new action
-
   #def redirect_if_not_logged_in
-  # def authorized?(record)
-  # authorized?(@student)
   # if current_user !== record.user -> redirect
 
   #new action
