@@ -32,8 +32,12 @@ class ApplicationController < Sinatra::Base
       @teacher = Teacher.find_by(id: a_hash[:id])
     end #set_teacher
 
-    def set_student(a_hash = params) 
-      @student = Student.find_by(id: a_hash[:id])
+    def set_student 
+      @student = Student.find_by(id: params[:id])
+    end #set_teacher
+
+    def set_question 
+      @question = Question.find_by(id: params[:id])
     end #set_teacher
 
     def authorized?(record)
