@@ -46,7 +46,11 @@ class StudentsController < ApplicationController
   post '/students' do
     set_teacher(session)
     student = Student.new(params)
-    if !student.save
+    if Student.in_database?(student)
+      flash[:message] = "Whoops, looks like that student is already in our system!"
+      @field_values = {}
+      erb :'students/new'
+    elsif !student.save
       flash[:message] = student.errors.full_messages.join(", ")
       @field_values = params
       erb :'students/new'
