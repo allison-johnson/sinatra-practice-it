@@ -1,6 +1,8 @@
+<div>
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
+</div>
 
 <h1><%= "Create a New Question Below" %></h1>
 
@@ -14,14 +16,11 @@
 
   <input type="radio" id="hard" name="difficulty" value="hard">
   <label for="hard">Hard</label><br><br>
-  
 
-  <!--<h3><label for="difficulty">Difficulty: </label>
-  <input type="text" id="difficulty" name="difficulty"/>
-  <br><br>-->
 
   <h2><label for="prompt">Prompt: </label></h2>
-  <input type="text" id="prompt" name="prompt"/></h3>
+  <input type="text" id="prompt" name="prompt"
+  value=<%= @field_values[:prompt] if @field_values[:prompt] %>></h3>
   <br><br>
 
   <h2>Select Question Topic(s):</h2>

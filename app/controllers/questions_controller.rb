@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
   get '/questions/new' do
     redirect_if_not_logged_in
     @topics = Topic.all 
+    @field_values = {}
     erb :'questions/new'
   end #action
 
@@ -26,7 +27,7 @@ class QuestionsController < ApplicationController
     end
   end #action 
 
-  #Edit action #tesing 
+  #Edit action
   get '/questions/:id/edit' do
     redirect_if_not_logged_in 
     if set_question && @question.owner_id == session[:id]
@@ -38,38 +39,23 @@ class QuestionsController < ApplicationController
     end #if
   end #action
 
-  #Show all of a teacher's questions (index page)
-  get '/:username/questions' do
-    #binding.pry 
-    if logged_in? && current_user.username == params[:username]
-      #@teacher = current_user
-      @teacher = Teacher.find_by(username: params[:username]) #also need to make sure that teacher is currently logged in...
-      @questions = Question.all
-      erb :'questions/index'
-    else
-      redirect '/'
-    end #if
-  end #action
-
   #create action
   post '/questions' do
-    if params[:prompt] == "" || params[:difficulty] == "" 
-      #flash[:message] = "Whoops - looks like you forgot to complete a field!"
-      redirect '/questions/new'
-    else #If nothing was blank, attempt to create a new Question...
-      question = Question.new(prompt: params[:prompt], difficulty: params[:difficulty], owner_id: session[:id])
-      if question.save #All validations passed, so associate question with selected topics
-        topics = params[:topics]
-        if topics 
-          topics.each do |topic|
-            question.topics << Topic.find_by(name: topic)
-          end #each
-        end #if
-        redirect "/teachers/#{session[:id]}"
-      else #Some validation failed, try again...
-        #flash[:message] = "Error!" #How to recognize which field didn't validate correctly?
-        redirect '/questions/new'
-      end #if able to save
+    set_teacher(session)
+    question = Question.new(difficulty: params[:difficulty], prompt: params[:prompt], owner_id: @teacher.id)
+    if !question.save 
+      flash[:message] = question.errors.full_messages.join(", ")
+      @field_values = {prompt: params[:prompt]}
+      @topics = Topic.all 
+      erb :'/questions/new'
+    else
+      topics = params[:topics]
+      if topics 
+        topics.each do |topic|
+          question.topics << Topic.find_by(name: topic)
+        end #each
+      end #if topics
+      redirect "/teachers/#{session[:id]}"
     end #if
   end #action
 
