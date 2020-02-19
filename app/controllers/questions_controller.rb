@@ -71,13 +71,14 @@ class QuestionsController < ApplicationController
       params[:topics].each do |topic|
         @question.topics << Topic.find_by(name: topic)
       end #each
+      @question.save 
       redirect "/teachers/#{session[:id]}"
     end #if 
   end #action
 
-  #add/remove students from a question (update action)
+  #update students for a question
   patch '/questions/:id/update-students' do
-    @question = Question.find_by(id: params[:id])
+    set_question 
     @question.students.clear 
     if params[:students]
       params[:students].each do |student|
