@@ -13,17 +13,16 @@ class QuestionsController < ApplicationController
 
   #Show page for a particular question
   get '/questions/:id' do
-    @question = Question.find_by(id: params[:id])
-    if logged_in? && @question 
-      @teacher = Teacher.find_by(id: session[:id])
+    redirect_if_not_logged_in 
+    set_teacher(session)
+    if set_question 
       @topics = @question.topics
       @difficulty = @question.difficulty
       @prompt = @question.prompt 
       @owner_id = @question.owner_id
-      #@owner = Teacher.find_by(id: @question.owner_id) #use this in show page
       erb :'questions/show'
     else
-      redirect '/'
+      erb :'failure'
     end
   end #action 
 
